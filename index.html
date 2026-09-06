@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>C++ Learning</title>
+
+<!--
+    JSZip
+    Used to create ZIP files directly
+    inside the browser.
+-->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js">
+</script>
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html,
+body{
+
+    width:100%;
+    min-height:100%;
+
+    background:#000;
+
+    color:#fff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body{
+
+    overflow:hidden;
+
+}
+
+
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
+
+.page{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100vh;
+
+    display:none;
+
+    background:#000;
+
+}
+
+
+.page.active{
+
+    display:flex;
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+#home{
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.home-button{
+
+    padding:20px 40px;
+
+    background:#fff;
+
+    color:#000;
+
+    border:1px solid #fff;
+
+    border-radius:7px;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        color .2s,
+        transform .2s;
+
+}
+
+
+.home-button:hover{
+
+    background:#000;
+
+    color:#fff;
+
+    transform:scale(1.03);
+
+}
+
+
+/* =========================================================
+   INTRODUCTION
+========================================================= */
+
+#introduction{
+
+    overflow-y:auto;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding:60px 20px;
+
+}
+
+
+.introduction-container{
+
+    width:100%;
+
+    max-width:900px;
+
+}
+
+
+.introduction-container h1{
+
+    font-size:48px;
+
+    font-weight:bold;
+
+    margin-bottom:30px;
+
+}
+
+
+.introduction-container h2{
+
+    font-size:28px;
+
+    margin-top:35px;
+
+    margin-bottom:15px;
+
+}
+
+
+.introduction-container p{
+
+    color:#ccc;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    margin-bottom:15px;
+
+}
+
+
+.introduction-container ul{
+
+    padding-left:30px;
+
+    margin-top:10px;
+
+}
+
+
+.introduction-container li{
+
+    color:#ccc;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+
+.enter-area{
+
+    width:100%;
+
+    text-align:center;
+
+    margin-top:60px;
+
+    padding-bottom:50px;
+
+}
+
+
+.enter-button{
+
+    padding:18px 45px;
+
+    background:#fff;
+
+    color:#000;
+
+    border:1px solid #fff;
+
+    border-radius:7px;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.enter-button:hover{
+
+    background:#000;
+
+    color:#fff;
+
+}
+
+
+/* =========================================================
+   DEVICE SELECTION
+========================================================= */
+
+#devices{
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    align-items:center;
+
+    padding:50px 20px;
+
+}
+
+
+.device-header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+
+.device-header h1{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+
+.device-header p{
+
+    color:#888;
+
+    font-size:16px;
+
+}
+
+
+.device-grid{
+
+    width:100%;
+
+    max-width:1000px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(210px,1fr)
+        );
+
+    gap:18px;
+
+}
+
+
+.device-card{
+
+    min-height:155px;
+
+    background:#0b0b0b;
+
+    border:1px solid #292929;
+
+    border-radius:9px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:
+
+        border-color .2s,
+
+        background .2s,
+
+        transform .2s;
+
+}
+
+
+.device-card:hover{
+
+    border-color:#fff;
+
+    background:#111;
+
+    transform:translateY(-3px);
+
+}
+
+
+.device-card h2{
+
+    font-size:23px;
+
+    margin-bottom:9px;
+
+}
+
+
+.device-card span{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.device-card.disabled{
+
+    opacity:.45;
+
+    cursor:not-allowed;
+
+}
+
+
+.device-card.disabled:hover{
+
+    transform:none;
+
+    border-color:#292929;
+
+    background:#0b0b0b;
+
+}
+
+
+.devices-back{
+
+    margin-top:40px;
+
+}
+
+
+/* =========================================================
+   LESSON PAGE
+========================================================= */
+
+#lessons{
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    align-items:center;
+
+    padding:45px 20px;
+
+}
+
+
+.lesson-container{
+
+    width:100%;
+
+    max-width:1000px;
+
+}
+
+
+.lesson-header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+
+.lesson-header h1{
+
+    font-size:40px;
+
+    margin-bottom:10px;
+
+}
+
+
+.lesson-header p{
+
+    color:#888;
+
+}
+
+
+.lesson-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+
+.lesson-item{
+
+    width:100%;
+
+    min-height:85px;
+
+    background:#0b0b0b;
+
+    border:1px solid #292929;
+
+    border-radius:8px;
+
+    padding:18px 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+
+.lesson-information{
+
+    min-width:0;
+
+}
+
+
+.lesson-information h3{
+
+    font-size:19px;
+
+    margin-bottom:7px;
+
+}
+
+
+.lesson-information p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.lesson-actions{
+
+    flex-shrink:0;
+
+}
+
+
+.download-button{
+
+    padding:12px 22px;
+
+    background:#fff;
+
+    color:#000;
+
+    border:1px solid #fff;
+
+    border-radius:6px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.download-button:hover{
+
+    background:#000;
+
+    color:#fff;
+
+}
+
+
+.lesson-bottom{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:35px;
+
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-button{
+
+    padding:12px 25px;
+
+    background:transparent;
+
+    color:#fff;
+
+    border:1px solid #444;
+
+    border-radius:6px;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+}
+
+
+.back-button:hover{
+
+    border-color:#fff;
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loading{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:99999;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.92);
+
+}
+
+
+.loading-box{
+
+    text-align:center;
+
+}
+
+
+.loader{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    border:4px solid #333;
+
+    border-top-color:#fff;
+
+    animation:
+        loading-spin .8s linear infinite;
+
+    margin:auto;
+
+}
+
+
+.loading-box p{
+
+    margin-top:16px;
+
+    color:#ccc;
+
+    font-size:15px;
+
+}
+
+
+@keyframes loading-spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+#message{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:30px;
+
+    transform:
+        translateX(-50%)
+        translateY(20px);
+
+    z-index:100000;
+
+    min-width:280px;
+
+    max-width:90%;
+
+    padding:14px 20px;
+
+    background:#111;
+
+    border:1px solid #444;
+
+    border-radius:7px;
+
+    color:#fff;
+
+    text-align:center;
+
+    font-size:14px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+
+        opacity .25s,
+
+        transform .25s;
+
+}
+
+
+#message.show{
+
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .home-button{
+
+        padding:17px 25px;
+
+        font-size:17px;
+
+    }
+
+
+    .introduction-container h1{
+
+        font-size:34px;
+
+    }
+
+
+    .introduction-container h2{
+
+        font-size:24px;
+
+    }
+
+
+    .introduction-container p,
+    .introduction-container li{
+
+        font-size:16px;
+
+    }
+
+
+    .device-header h1{
+
+        font-size:31px;
+
+    }
+
+
+    .lesson-header h1{
+
+        font-size:30px;
+
+    }
+
+
+    .lesson-item{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    .lesson-actions{
+
+        width:100%;
+
+    }
+
+
+    .download-button{
+
+        width:100%;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL HEIGHT
+========================================================= */
+
+@media(max-height:600px){
+
+    #introduction{
+
+        padding-top:35px;
+
+    }
+
+
+    .device-card{
+
+        min-height:120px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HOME PAGE
+========================================================= -->
+
+<section
+    id="home"
+    class="page active"
+>
+
+
+    <button
+        class="home-button"
+        onclick="openIntroduction()"
+    >
+
+        INTRODUCTION TO C++
+
+    </button>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     INTRODUCTION PAGE
+========================================================= -->
+
+<section
+    id="introduction"
+    class="page"
+>
+
+
+    <div class="introduction-container">
+
+
+        <h1>
+            Introduction to C++
+        </h1>
+
+
+        <p>
+            C++ is a powerful general-purpose programming
+            language used in software development, games,
+            embedded systems, robotics, and many other
+            applications.
+        </p>
+
+
+        <h2>
+            What is C++?
+        </h2>
+
+
+        <p>
+            C++ is a programming language that provides
+            both high-level programming features and
+            low-level control over computer resources.
+        </p>
+
+
+        <h2>
+            C++ and Microcontrollers
+        </h2>
+
+
+        <p>
+            C++-based programming is widely used with
+            development boards such as Arduino,
+            ESP8266, ESP32, and other microcontroller
+            platforms.
+        </p>
+
+
+        <h2>
+            What You Can Learn
+        </h2>
+
+
+        <ul>
+
+            <li>
+                Variables and data types
+            </li>
+
+            <li>
+                Functions
+            </li>
+
+            <li>
+                Conditions
+            </li>
+
+            <li>
+                Loops
+            </li>
+
+            <li>
+                Digital input and output
+            </li>
+
+            <li>
+                Sensors
+            </li>
+
+            <li>
+                Communication
+            </li>
+
+            <li>
+                Microcontroller programming
+            </li>
+
+        </ul>
+
+
+        <div class="enter-area">
+
+
+            <button
+                class="enter-button"
+                onclick="openDevices()"
+            >
+
+                ENTER TO C++
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     DEVICE SELECTION PAGE
+========================================================= -->
+
+<section
+    id="devices"
+    class="page"
+>
+
+
+    <div class="device-header">
+
+        <h1>
+            SELECT YOUR DEVICE
+        </h1>
+
+        <p>
+            Choose the device you want to program.
+        </p>
+
+    </div>
+
+
+
+    <div class="device-grid">
+
+
+        <!-- D1 MINI -->
+
+        <div
+            class="device-card"
+            onclick="selectDevice('d1-mini')"
+        >
+
+            <h2>
+                D1 Mini
+            </h2>
+
+            <span>
+                ESP8266
+            </span>
+
+        </div>
+
+
+
+        <!-- ARDUINO UNO -->
+
+        <div
+            class="device-card"
+            onclick="selectDevice('arduino-uno')"
+        >
+
+            <h2>
+                Arduino Uno
+            </h2>
+
+            <span>
+                ATmega328P
+            </span>
+
+        </div>
+
+
+
+        <!-- ARDUINO NANO -->
+
+        <div
+            class="device-card"
+            onclick="selectDevice('arduino-nano')"
+        >
+
+            <h2>
+                Arduino Nano
+            </h2>
+
+            <span>
+                ATmega328P
+            </span>
+
+        </div>
+
+
+
+        <!-- ESP32 -->
+
+        <div
+            class="device-card"
+            onclick="selectDevice('esp32')"
+        >
+
+            <h2>
+                ESP32
+            </h2>
+
+            <span>
+                WiFi + Bluetooth
+            </span>
+
+        </div>
+
+
+
+        <!-- ESP8266 -->
+
+        <div
+            class="device-card"
+            onclick="selectDevice('esp8266')"
+        >
+
+            <h2>
+                ESP8266
+            </h2>
+
+            <span>
+                WiFi
+            </span>
+
+        </div>
+
+
+
+        <!-- ARDUINO MEGA -->
+
+        <div
+            class="device-card"
+            onclick="selectDevice('arduino-mega')"
+        >
+
+            <h2>
+                Arduino Mega
+            </h2>
+
+            <span>
+                ATmega2560
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="devices-back">
+
+        <button
+            class="back-button"
+            onclick="openIntroduction()"
+        >
+
+            BACK
+
+        </button>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     LESSON PAGE
+========================================================= -->
+
+<section
+    id="lessons"
+    class="page"
+>
+
+
+    <div class="lesson-container">
+
+
+        <div class="lesson-header">
+
+            <h1 id="selected-device-name">
+                DEVICE
+            </h1>
+
+            <p id="selected-device-description">
+                Available C++ programs
+            </p>
+
+        </div>
+
+
+        <div
+            id="lesson-list"
+            class="lesson-list"
+        >
+        </div>
+
+
+        <div class="lesson-bottom">
+
+            <button
+                class="back-button"
+                onclick="openDevices()"
+            >
+
+                BACK TO DEVICES
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     LOADING
+========================================================= -->
+
+<div id="loading">
+
+
+    <div class="loading-box">
+
+
+        <div class="loader"></div>
+
+
+        <p id="loading-text">
+            Creating ZIP file...
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     MESSAGE
+========================================================= -->
+
+<div id="message"></div>
+
+
+
+<script>
+
+/* =========================================================
+   DEVICE CONFIGURATION
+=========================================================
+
+   Each device has its own folder.
+
+   Example:
+
+   devices/d1-mini/codes.json
+
+========================================================= */
+
+const DEVICE_CONFIG = {
+
+    "d1-mini": {
+
+        name: "D1 Mini",
+
+        folder: "devices/d1-mini/",
+
+        json: "devices/d1-mini/codes.json"
+
+    },
+
+
+    "arduino-uno": {
+
+        name: "Arduino Uno",
+
+        folder: "devices/arduino-uno/",
+
+        json: "devices/arduino-uno/codes.json"
+
+    },
+
+
+    "arduino-nano": {
+
+        name: "Arduino Nano",
+
+        folder: "devices/arduino-nano/",
+
+        json: "devices/arduino-nano/codes.json"
+
+    },
+
+
+    "esp32": {
+
+        name: "ESP32",
+
+        folder: "devices/esp32/",
+
+        json: "devices/esp32/codes.json"
+
+    },
+
+
+    "esp8266": {
+
+        name: "ESP8266",
+
+        folder: "devices/esp8266/",
+
+        json: "devices/esp8266/codes.json"
+
+    },
+
+
+    "arduino-mega": {
+
+        name: "Arduino Mega",
+
+        folder: "devices/arduino-mega/",
+
+        json: "devices/arduino-mega/codes.json"
+
+    }
+
+};
+
+
+
+/* =========================================================
+   CURRENT DEVICE
+========================================================= */
+
+let currentDevice = null;
+
+
+
+/* =========================================================
+   PAGE FUNCTION
+========================================================= */
+
+function showPage(id){
+
+    const pages =
+        document.querySelectorAll(".page");
+
+
+    pages.forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    const selected =
+        document.getElementById(id);
+
+
+    if(selected){
+
+        selected.classList.add("active");
+
+    }
+
+
+    window.scrollTo(0,0);
+
+}
+
+
+
+/* =========================================================
+   OPEN INTRODUCTION
+========================================================= */
+
+function openIntroduction(){
+
+    showPage("introduction");
+
+}
+
+
+
+/* =========================================================
+   OPEN DEVICE SELECTION
+========================================================= */
+
+function openDevices(){
+
+    showPage("devices");
+
+}
+
+
+
+/* =========================================================
+   SELECT DEVICE
+========================================================= */
+
+async function selectDevice(deviceId){
+
+    const device =
+        DEVICE_CONFIG[deviceId];
+
+
+    if(!device){
+
+        showMessage(
+            "Device configuration not found."
+        );
+
+        return;
+
+    }
+
+
+    currentDevice = deviceId;
+
+
+    /*
+        Show loading while reading JSON.
+    */
+
+    showLoading(
+        "Loading device content..."
+    );
+
+
+    try{
+
+        const response =
+            await fetch(device.json, {
+                cache:"no-cache"
+            });
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Unable to load " +
+                device.json
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        displayLessons(
+            device,
+            data
+        );
+
+
+        hideLoading();
+
+
+        showPage("lessons");
+
+
+    }
+    catch(error){
+
+        hideLoading();
+
+
+        console.error(error);
+
+
+        showMessage(
+            "Unable to load device content."
+        );
+
+
+        /*
+            Helpful console message.
+        */
+
+        console.log(
+            "Expected JSON file:",
+            device.json
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   DISPLAY LESSONS
+========================================================= */
+
+function displayLessons(device, data){
+
+    const title =
+        document.getElementById(
+            "selected-device-name"
+        );
+
+
+    const description =
+        document.getElementById(
+            "selected-device-description"
+        );
+
+
+    const lessonList =
+        document.getElementById(
+            "lesson-list"
+        );
+
+
+    /*
+        Device name
+    */
+
+    title.textContent =
+        data.device ||
+        device.name;
+
+
+    /*
+        Device description
+    */
+
+    description.textContent =
+        data.description ||
+        "Available C++ programs";
+
+
+    /*
+        Clear previous lessons.
+    */
+
+    lessonList.innerHTML = "";
+
+
+    /*
+        Check lessons.
+    */
+
+    if(
+        !Array.isArray(data.lessons) ||
+        data.lessons.length === 0
+    ){
+
+        lessonList.innerHTML = `
+
+            <div
+                class="lesson-item"
+            >
+
+                <div class="lesson-information">
+
+                    <h3>
+                        No C++ programs available
+                    </h3>
+
+                    <p>
+                        Add lessons to this device's
+                        codes.json file.
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+        Create lesson buttons.
+    */
+
+    data.lessons.forEach(
+        function(lesson,index){
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "lesson-item";
+
+
+            const information =
+                document.createElement(
+                    "div"
+                );
+
+
+            information.className =
+                "lesson-information";
+
+
+            const heading =
+                document.createElement(
+                    "h3"
+                );
+
+
+            heading.textContent =
+                lesson.name ||
+                "Untitled C++ Program";
+
+
+            const paragraph =
+                document.createElement(
+                    "p"
+                );
+
+
+            paragraph.textContent =
+                lesson.description ||
+                "C++ source code and connection guide";
+
+
+            information.appendChild(
+                heading
+            );
+
+
+            information.appendChild(
+                paragraph
+            );
+
+
+            const actions =
+                document.createElement(
+                    "div"
+                );
+
+
+            actions.className =
+                "lesson-actions";
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "download-button";
+
+
+            button.textContent =
+                "DOWNLOAD ZIP";
+
+
+            button.addEventListener(
+                "click",
+                function(){
+
+                    downloadLessonZIP(
+                        device,
+                        lesson
+                    );
+
+                }
+            );
+
+
+            actions.appendChild(
+                button
+            );
+
+
+            item.appendChild(
+                information
+            );
+
+
+            item.appendChild(
+                actions
+            );
+
+
+            lessonList.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   DOWNLOAD ZIP
+========================================================= */
+
+async function downloadLessonZIP(
+    device,
+    lesson
+){
+
+    /*
+        Check JSZip.
+    */
+
+    if(typeof JSZip === "undefined"){
+
+        showMessage(
+            "JSZip library is not available."
+        );
+
+        return;
+
+    }
+
+
+    /*
+        Required C++ code.
+    */
+
+    if(
+        typeof lesson.code !== "string"
+    ){
+
+        showMessage(
+            "C++ code is missing."
+        );
+
+        return;
+
+    }
+
+
+    /*
+        Required connection guide.
+    */
+
+    if(
+        typeof lesson.connectionGuide !==
+        "string"
+    ){
+
+        showMessage(
+            "Connection guide is missing."
+        );
+
+        return;
+
+    }
+
+
+    showLoading(
+        "Creating ZIP file..."
+    );
+
+
+    try{
+
+        const zip =
+            new JSZip();
+
+
+        /*
+            Get filename.
+
+            Example:
+            D1-Mini-Blink.cpp
+        */
+
+        const cppFile =
+            lesson.cppFile ||
+            "program.cpp";
+
+
+        /*
+            FILE #1
+            C++ FILE
+        */
+
+        zip.file(
+            cppFile,
+            lesson.code
+        );
+
+
+        /*
+            FILE #2
+            CONNECTION GUIDE
+        */
+
+        zip.file(
+            "connection guid.txt",
+            lesson.connectionGuide
+        );
+
+
+        /*
+            Generate ZIP.
+        */
+
+        const blob =
+            await zip.generateAsync({
+
+                type:"blob",
+
+                compression:"DEFLATE",
+
+                compressionOptions:{
+
+                    level:9
+
+                }
+
+            });
+
+
+        /*
+            ZIP filename.
+        */
+
+        let zipFile =
+            lesson.zipFile;
+
+
+        /*
+            If zipFile is not supplied,
+            automatically create one.
+        */
+
+        if(
+            !zipFile ||
+            typeof zipFile !== "string"
+        ){
+
+            zipFile =
+                cppFile
+                    .replace(
+                        /\.cpp$/i,
+                        ""
+                    )
+                + ".zip";
+
+        }
+
+
+        /*
+            Create browser download.
+        */
+
+        const url =
+            URL.createObjectURL(blob);
+
+
+        const link =
+            document.createElement("a");
+
+
+        link.href =
+            url;
+
+
+        link.download =
+            zipFile;
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        link.click();
+
+
+        link.remove();
+
+
+        /*
+            Release memory.
+        */
+
+        setTimeout(
+            function(){
+
+                URL.revokeObjectURL(
+                    url
+                );
+
+            },
+            1000
+        );
+
+
+        hideLoading();
+
+
+        showMessage(
+            "ZIP file created successfully."
+        );
+
+    }
+    catch(error){
+
+        hideLoading();
+
+
+        console.error(
+            "ZIP ERROR:",
+            error
+        );
+
+
+        showMessage(
+            "Unable to create ZIP file."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+function showLoading(text){
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    const loadingText =
+        document.getElementById(
+            "loading-text"
+        );
+
+
+    loadingText.textContent =
+        text ||
+        "Loading...";
+
+
+    loading.style.display =
+        "flex";
+
+}
+
+
+
+/* =========================================================
+   HIDE LOADING
+========================================================= */
+
+function hideLoading(){
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    loading.style.display =
+        "none";
+
+}
+
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+let messageTimer = null;
+
+
+function showMessage(text){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        messageTimer
+    );
+
+
+    messageTimer =
+        setTimeout(
+            function(){
+
+                message.classList.remove(
+                    "show"
+                );
+
+            },
+            3000
+        );
+
+}
+
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        showPage("home");
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

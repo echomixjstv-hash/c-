@@ -1,0 +1,87 @@
+{
+  "device": "Arduino Mega",
+  "type": "ATmega2560",
+  "description": "C++ programs for the Arduino Mega 2560.",
+  "lessons": [
+    {
+      "name": "01 Blink LED",
+      "description": "Blink the built-in LED on the Arduino Mega.",
+      "cppFile": "Arduino-Mega-Blink.cpp",
+      "zipFile": "Arduino-Mega-Blink.zip",
+      "code": "#define LED_PIN LED_BUILTIN\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(LED_PIN, HIGH);\n  delay(1000);\n\n  digitalWrite(LED_PIN, LOW);\n  delay(1000);\n}",
+      "connectionGuide": "Arduino Mega 2560:\nNo external LED is required.\n\nThe built-in LED is connected to digital pin 13.\n\nConnect the Mega to the computer using USB and upload the program using Arduino IDE."
+    },
+    {
+      "name": "02 Button Input",
+      "description": "Read a push button and control the built-in LED.",
+      "cppFile": "Arduino-Mega-Button.cpp",
+      "zipFile": "Arduino-Mega-Button.zip",
+      "code": "#define BUTTON_PIN 22\n#define LED_PIN LED_BUILTIN\n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n\n  if (buttonState == LOW) {\n    digitalWrite(LED_PIN, HIGH);\n  } else {\n    digitalWrite(LED_PIN, LOW);\n  }\n}",
+      "connectionGuide": "Push Button:\nOne leg of the button -> Arduino Mega D22\nOther leg -> GND\n\nThe program uses INPUT_PULLUP, so an external resistor is not required.\n\nBuilt-in LED -> D13."
+    },
+    {
+      "name": "03 Buzzer",
+      "description": "Generate a tone using a buzzer.",
+      "cppFile": "Arduino-Mega-Buzzer.cpp",
+      "zipFile": "Arduino-Mega-Buzzer.zip",
+      "code": "#define BUZZER_PIN 24\n\nvoid setup() {\n}\n\nvoid loop() {\n  tone(BUZZER_PIN, 1000);\n  delay(500);\n\n  noTone(BUZZER_PIN);\n  delay(500);\n}",
+      "connectionGuide": "Buzzer:\nPositive (+) -> Arduino Mega D24\nNegative (-) -> GND\n\nThe buzzer produces a 1000 Hz tone for 500 milliseconds."
+    },
+    {
+      "name": "04 Traffic Light",
+      "description": "Control red, yellow, and green LEDs as a traffic light.",
+      "cppFile": "Arduino-Mega-Traffic-Light.cpp",
+      "zipFile": "Arduino-Mega-Traffic-Light.zip",
+      "code": "#define RED_LED 22\n#define YELLOW_LED 23\n#define GREEN_LED 24\n\nvoid setup() {\n  pinMode(RED_LED, OUTPUT);\n  pinMode(YELLOW_LED, OUTPUT);\n  pinMode(GREEN_LED, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(RED_LED, HIGH);\n  digitalWrite(YELLOW_LED, LOW);\n  digitalWrite(GREEN_LED, LOW);\n  delay(3000);\n\n  digitalWrite(RED_LED, LOW);\n  digitalWrite(YELLOW_LED, HIGH);\n  digitalWrite(GREEN_LED, LOW);\n  delay(1000);\n\n  digitalWrite(RED_LED, LOW);\n  digitalWrite(YELLOW_LED, LOW);\n  digitalWrite(GREEN_LED, HIGH);\n  delay(3000);\n}",
+      "connectionGuide": "Red LED:\nAnode (+) -> 220 ohm resistor -> D22\nCathode (-) -> GND\n\nYellow LED:\nAnode (+) -> 220 ohm resistor -> D23\nCathode (-) -> GND\n\nGreen LED:\nAnode (+) -> 220 ohm resistor -> D24\nCathode (-) -> GND."
+    },
+    {
+      "name": "05 Serial Monitor",
+      "description": "Display messages and analog readings in Serial Monitor.",
+      "cppFile": "Arduino-Mega-Serial-Monitor.cpp",
+      "zipFile": "Arduino-Mega-Serial-Monitor.zip",
+      "code": "void setup() {\n  Serial.begin(9600);\n  Serial.println(\"Arduino Mega Serial Monitor\");\n}\n\nvoid loop() {\n  Serial.print(\"Analog A0: \");\n  Serial.println(analogRead(A0));\n\n  delay(1000);\n}",
+      "connectionGuide": "No external components are required.\n\nConnect the Arduino Mega to the computer using USB.\n\nOpen Arduino IDE -> Tools -> Serial Monitor.\nSet the baud rate to 9600."
+    },
+    {
+      "name": "06 Analog Input",
+      "description": "Read an analog value from a potentiometer.",
+      "cppFile": "Arduino-Mega-Analog-Input.cpp",
+      "zipFile": "Arduino-Mega-Analog-Input.zip",
+      "code": "#define POT_PIN A0\n\nvoid setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int value = analogRead(POT_PIN);\n\n  Serial.print(\"Analog Value: \");\n  Serial.println(value);\n\n  delay(200);\n}",
+      "connectionGuide": "Potentiometer:\nOne outer pin -> 5V\nMiddle pin -> A0\nOther outer pin -> GND\n\nThe Arduino Mega reads an analog value from approximately 0 to 1023."
+    },
+    {
+      "name": "07 LED Fade",
+      "description": "Fade an LED using PWM.",
+      "cppFile": "Arduino-Mega-LED-Fade.cpp",
+      "zipFile": "Arduino-Mega-LED-Fade.zip",
+      "code": "#define LED_PIN 6\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  for (int brightness = 0; brightness <= 255; brightness++) {\n    analogWrite(LED_PIN, brightness);\n    delay(10);\n  }\n\n  for (int brightness = 255; brightness >= 0; brightness--) {\n    analogWrite(LED_PIN, brightness);\n    delay(10);\n  }\n}",
+      "connectionGuide": "LED:\nAnode (+) -> 220 ohm resistor -> Arduino Mega D6\nCathode (-) -> GND\n\nD6 supports PWM and is used to control LED brightness."
+    },
+    {
+      "name": "08 Light Sensor",
+      "description": "Read an LDR light sensor and automatically control the built-in LED.",
+      "cppFile": "Arduino-Mega-Light-Sensor.cpp",
+      "zipFile": "Arduino-Mega-Light-Sensor.zip",
+      "code": "#define LDR_PIN A0\n#define LED_PIN LED_BUILTIN\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int lightValue = analogRead(LDR_PIN);\n\n  Serial.print(\"Light Value: \");\n  Serial.println(lightValue);\n\n  if (lightValue < 500) {\n    digitalWrite(LED_PIN, HIGH);\n  } else {\n    digitalWrite(LED_PIN, LOW);\n  }\n\n  delay(200);\n}",
+      "connectionGuide": "LDR circuit:\nUse an LDR and a 10K resistor as a voltage divider.\n\nVoltage divider output -> A0\n\nBuilt-in LED -> D13.\n\nThe LED turns ON when the measured light value is below 500."
+    },
+    {
+      "name": "09 Button Counter",
+      "description": "Count button presses and display the count in Serial Monitor.",
+      "cppFile": "Arduino-Mega-Button-Counter.cpp",
+      "zipFile": "Arduino-Mega-Button-Counter.zip",
+      "code": "#define BUTTON_PIN 22\n\nint counter = 0;\nint lastButtonState = HIGH;\n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n\n  if (lastButtonState == HIGH && buttonState == LOW) {\n    counter++;\n\n    Serial.print(\"Button Presses: \");\n    Serial.println(counter);\n\n    delay(200);\n  }\n\n  lastButtonState = buttonState;\n}",
+      "connectionGuide": "Push Button:\nOne leg -> Arduino Mega D22\nOther leg -> GND\n\nThe internal pull-up resistor is used.\n\nOpen Serial Monitor at 9600 baud to view the button count."
+    },
+    {
+      "name": "10 Button LED Toggle",
+      "description": "Toggle the built-in LED ON and OFF with a push button.",
+      "cppFile": "Arduino-Mega-Button-LED-Toggle.cpp",
+      "zipFile": "Arduino-Mega-Button-LED-Toggle.zip",
+      "code": "#define BUTTON_PIN 22\n#define LED_PIN LED_BUILTIN\n\nbool ledState = false;\nint lastButtonState = HIGH;\n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  pinMode(LED_PIN, OUTPUT);\n\n  digitalWrite(LED_PIN, LOW);\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n\n  if (lastButtonState == HIGH && buttonState == LOW) {\n    ledState = !ledState;\n    digitalWrite(LED_PIN, ledState ? HIGH : LOW);\n\n    delay(200);\n  }\n\n  lastButtonState = buttonState;\n}",
+      "connectionGuide": "Push Button:\nOne leg -> Arduino Mega D22\nOther leg -> GND\n\nBuilt-in LED:\nArduino Mega D13\n\nEach press toggles the LED between ON and OFF."
+    }
+  ]
+}

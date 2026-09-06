@@ -1,0 +1,87 @@
+{
+  "device": "Arduino Uno",
+  "type": "ATmega328P",
+  "description": "C++ programs for the Arduino Uno.",
+  "lessons": [
+    {
+      "name": "01 Blink LED",
+      "description": "Blink the built-in LED on the Arduino Uno.",
+      "cppFile": "Arduino-Uno-Blink.cpp",
+      "zipFile": "Arduino-Uno-Blink.zip",
+      "code": "#define LED_PIN LED_BUILTIN\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(LED_PIN, HIGH);\n  delay(1000);\n\n  digitalWrite(LED_PIN, LOW);\n  delay(1000);\n}",
+      "connectionGuide": "Arduino Uno:\nNo external LED is required.\n\nThe built-in LED is connected to digital pin 13.\n\nUpload the program to the Arduino Uno using the Arduino IDE."
+    },
+    {
+      "name": "02 Button Input",
+      "description": "Read a push button and control an LED.",
+      "cppFile": "Arduino-Uno-Button.cpp",
+      "zipFile": "Arduino-Uno-Button.zip",
+      "code": "#define BUTTON_PIN 2\n#define LED_PIN 13\n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n\n  if (buttonState == LOW) {\n    digitalWrite(LED_PIN, HIGH);\n  } else {\n    digitalWrite(LED_PIN, LOW);\n  }\n}",
+      "connectionGuide": "Push Button:\nOne leg of the button -> Arduino Uno D2\nOther leg -> GND\n\nThe program uses INPUT_PULLUP, so no external resistor is required.\n\nBuilt-in LED:\nArduino Uno D13."
+    },
+    {
+      "name": "03 Buzzer",
+      "description": "Make a buzzer produce a tone.",
+      "cppFile": "Arduino-Uno-Buzzer.cpp",
+      "zipFile": "Arduino-Uno-Buzzer.zip",
+      "code": "#define BUZZER_PIN 8\n\nvoid setup() {\n}\n\nvoid loop() {\n  tone(BUZZER_PIN, 1000);\n  delay(500);\n\n  noTone(BUZZER_PIN);\n  delay(500);\n}",
+      "connectionGuide": "Active or passive buzzer:\nPositive (+) -> Arduino Uno D8\nNegative (-) -> GND\n\nThe buzzer will turn on and off every 500 milliseconds."
+    },
+    {
+      "name": "04 Traffic Light",
+      "description": "Control red, yellow, and green LEDs like a traffic light.",
+      "cppFile": "Arduino-Uno-Traffic-Light.cpp",
+      "zipFile": "Arduino-Uno-Traffic-Light.zip",
+      "code": "#define RED_LED 8\n#define YELLOW_LED 9\n#define GREEN_LED 10\n\nvoid setup() {\n  pinMode(RED_LED, OUTPUT);\n  pinMode(YELLOW_LED, OUTPUT);\n  pinMode(GREEN_LED, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(RED_LED, HIGH);\n  digitalWrite(YELLOW_LED, LOW);\n  digitalWrite(GREEN_LED, LOW);\n  delay(3000);\n\n  digitalWrite(RED_LED, LOW);\n  digitalWrite(YELLOW_LED, HIGH);\n  digitalWrite(GREEN_LED, LOW);\n  delay(1000);\n\n  digitalWrite(RED_LED, LOW);\n  digitalWrite(YELLOW_LED, LOW);\n  digitalWrite(GREEN_LED, HIGH);\n  delay(3000);\n}",
+      "connectionGuide": "Red LED:\nAnode (+) -> D8 through a 220 ohm resistor\nCathode (-) -> GND\n\nYellow LED:\nAnode (+) -> D9 through a 220 ohm resistor\nCathode (-) -> GND\n\nGreen LED:\nAnode (+) -> D10 through a 220 ohm resistor\nCathode (-) -> GND."
+    },
+    {
+      "name": "05 Serial Monitor",
+      "description": "Send messages and sensor values to the Serial Monitor.",
+      "cppFile": "Arduino-Uno-Serial-Monitor.cpp",
+      "zipFile": "Arduino-Uno-Serial-Monitor.zip",
+      "code": "void setup() {\n  Serial.begin(9600);\n  Serial.println(\"Arduino Uno Serial Monitor\");\n}\n\nvoid loop() {\n  Serial.print(\"Analog A0: \");\n  Serial.println(analogRead(A0));\n\n  delay(1000);\n}",
+      "connectionGuide": "No external connection is required.\n\nConnect the Arduino Uno to the computer using USB.\n\nOpen Arduino IDE -> Tools -> Serial Monitor.\nSet the baud rate to 9600."
+    },
+    {
+      "name": "06 Analog Input",
+      "description": "Read an analog value from a potentiometer.",
+      "cppFile": "Arduino-Uno-Analog-Input.cpp",
+      "zipFile": "Arduino-Uno-Analog-Input.zip",
+      "code": "#define POT_PIN A0\n\nvoid setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int value = analogRead(POT_PIN);\n\n  Serial.print(\"Analog Value: \");\n  Serial.println(value);\n\n  delay(200);\n}",
+      "connectionGuide": "Potentiometer:\nLeft pin -> 5V\nMiddle pin -> A0\nRight pin -> GND\n\nThe Arduino Uno will read a value from approximately 0 to 1023."
+    },
+    {
+      "name": "07 LED Fade",
+      "description": "Gradually increase and decrease LED brightness using PWM.",
+      "cppFile": "Arduino-Uno-LED-Fade.cpp",
+      "zipFile": "Arduino-Uno-LED-Fade.zip",
+      "code": "#define LED_PIN 9\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  for (int brightness = 0; brightness <= 255; brightness++) {\n    analogWrite(LED_PIN, brightness);\n    delay(10);\n  }\n\n  for (int brightness = 255; brightness >= 0; brightness--) {\n    analogWrite(LED_PIN, brightness);\n    delay(10);\n  }\n}",
+      "connectionGuide": "LED:\nAnode (+) -> 220 ohm resistor -> Arduino Uno D9\nCathode (-) -> GND\n\nD9 supports PWM and is used to control LED brightness."
+    },
+    {
+      "name": "08 Light Sensor",
+      "description": "Read a light-dependent resistor (LDR) using analog input.",
+      "cppFile": "Arduino-Uno-Light-Sensor.cpp",
+      "zipFile": "Arduino-Uno-Light-Sensor.zip",
+      "code": "#define LDR_PIN A0\n#define LED_PIN 13\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int lightValue = analogRead(LDR_PIN);\n\n  Serial.print(\"Light Value: \");\n  Serial.println(lightValue);\n\n  if (lightValue < 500) {\n    digitalWrite(LED_PIN, HIGH);\n  } else {\n    digitalWrite(LED_PIN, LOW);\n  }\n\n  delay(200);\n}",
+      "connectionGuide": "LDR voltage divider:\nLDR and a 10K resistor are connected as a voltage divider.\n\nDivider output -> A0\nOther side -> 5V and GND as appropriate for the divider.\n\nBuilt-in LED -> D13.\n\nThe LED turns on when the measured light value is below 500."
+    },
+    {
+      "name": "09 Button Counter",
+      "description": "Count button presses and display the count in the Serial Monitor.",
+      "cppFile": "Arduino-Uno-Button-Counter.cpp",
+      "zipFile": "Arduino-Uno-Button-Counter.zip",
+      "code": "#define BUTTON_PIN 2\n\nint counter = 0;\nint lastButtonState = HIGH;\n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n\n  if (lastButtonState == HIGH && buttonState == LOW) {\n    counter++;\n\n    Serial.print(\"Button Presses: \");\n    Serial.println(counter);\n\n    delay(200);\n  }\n\n  lastButtonState = buttonState;\n}",
+      "connectionGuide": "Push Button:\nOne leg -> Arduino Uno D2\nOther leg -> GND\n\nThe internal pull-up resistor is enabled using INPUT_PULLUP.\n\nOpen Serial Monitor at 9600 baud to see the counter."
+    },
+    {
+      "name": "10 Button LED Toggle",
+      "description": "Toggle an LED ON and OFF each time the button is pressed.",
+      "cppFile": "Arduino-Uno-Button-LED-Toggle.cpp",
+      "zipFile": "Arduino-Uno-Button-LED-Toggle.zip",
+      "code": "#define BUTTON_PIN 2\n#define LED_PIN 13\n\nbool ledState = false;\nint lastButtonState = HIGH;\n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  pinMode(LED_PIN, OUTPUT);\n\n  digitalWrite(LED_PIN, LOW);\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n\n  if (lastButtonState == HIGH && buttonState == LOW) {\n    ledState = !ledState;\n    digitalWrite(LED_PIN, ledState ? HIGH : LOW);\n\n    delay(200);\n  }\n\n  lastButtonState = buttonState;\n}",
+      "connectionGuide": "Push Button:\nOne leg -> Arduino Uno D2\nOther leg -> GND\n\nBuilt-in LED:\nArduino Uno D13\n\nEach button press toggles the LED between ON and OFF."
+    }
+  ]
+}

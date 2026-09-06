@@ -1,0 +1,96 @@
+{
+  "device": "D1 Mini",
+  "type": "ESP8266",
+  "description": "C++ programs and connection guides for the D1 Mini.",
+  "lessons": [
+    {
+      "name": "01 - Blink LED",
+      "description": "Basic LED blinking using D5.",
+      "cppFile": "D1-Mini-Blink.cpp",
+      "zipFile": "D1-Mini-Blink.zip",
+      "code": "#include <Arduino.h>\n\nconst int LED_PIN = D5;\n\nvoid setup()\n{\n    pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop()\n{\n    digitalWrite(LED_PIN, HIGH);\n    delay(1000);\n\n    digitalWrite(LED_PIN, LOW);\n    delay(1000);\n}",
+      "connectionGuide": "D1 MINI - BLINK LED\n\nCONNECTION GUIDE\n================\n\nCOMPONENTS:\n- D1 Mini\n- LED\n- 220 ohm resistor\n- Jumper wires\n\nCONNECTION:\n\nD5  -> 220 ohm resistor -> LED positive\nGND -> LED negative\n\nUSB CONNECTION:\nConnect the D1 Mini to the computer using a USB cable.\n\nARDUINO IDE:\nBoard: LOLIN(WEMOS) D1 & mini\nSelect the correct COM port before uploading.\n\nNOTE:\nAlways use an appropriate resistor when connecting an external LED."
+    },
+
+    {
+      "name": "02 - Button Input",
+      "description": "Read a push button and control an LED.",
+      "cppFile": "D1-Mini-Button.cpp",
+      "zipFile": "D1-Mini-Button.zip",
+      "code": "#include <Arduino.h>\n\nconst int BUTTON_PIN = D3;\nconst int LED_PIN = D5;\n\nvoid setup()\n{\n    pinMode(BUTTON_PIN, INPUT_PULLUP);\n    pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop()\n{\n    if (digitalRead(BUTTON_PIN) == LOW)\n    {\n        digitalWrite(LED_PIN, HIGH);\n    }\n    else\n    {\n        digitalWrite(LED_PIN, LOW);\n    }\n}",
+      "connectionGuide": "D1 MINI - BUTTON INPUT\n\nCONNECTION GUIDE\n================\n\nCOMPONENTS:\n- D1 Mini\n- Push button\n- LED\n- 220 ohm resistor\n\nBUTTON:\nOne side of button -> D3\nOther side         -> GND\n\nLED:\nD5  -> 220 ohm resistor -> LED positive\nGND -> LED negative\n\nIMPORTANT:\nThe program uses INPUT_PULLUP.\nThe button is considered pressed when the input is LOW.\n\nARDUINO IDE:\nBoard: LOLIN(WEMOS) D1 & mini"
+    },
+
+    {
+      "name": "03 - Buzzer",
+      "description": "Turn a buzzer on and off using D6.",
+      "cppFile": "D1-Mini-Buzzer.cpp",
+      "zipFile": "D1-Mini-Buzzer.zip",
+      "code": "#include <Arduino.h>\n\nconst int BUZZER_PIN = D6;\n\nvoid setup()\n{\n    pinMode(BUZZER_PIN, OUTPUT);\n}\n\nvoid loop()\n{\n    digitalWrite(BUZZER_PIN, HIGH);\n    delay(500);\n\n    digitalWrite(BUZZER_PIN, LOW);\n    delay(500);\n}",
+      "connectionGuide": "D1 MINI - BUZZER\n\nCONNECTION GUIDE\n================\n\nCOMPONENTS:\n- D1 Mini\n- Buzzer\n\nCONNECTION:\n\nBuzzer positive -> D6\nBuzzer negative -> GND\n\nUSB:\nConnect the D1 Mini to the computer using USB.\n\nARDUINO IDE:\nBoard: LOLIN(WEMOS) D1 & mini\n\nCAUTION:\nFor larger or higher-current buzzers, use an appropriate driver circuit instead of connecting the load directly to the GPIO."
+    },
+
+    {
+      "name": "04 - Traffic Light",
+      "description": "Control three LEDs as a simple traffic light.",
+      "cppFile": "D1-Mini-Traffic-Light.cpp",
+      "zipFile": "D1-Mini-Traffic-Light.zip",
+      "code": "#include <Arduino.h>\n\nconst int RED_LED = D5;\nconst int YELLOW_LED = D6;\nconst int GREEN_LED = D7;\n\nvoid setup()\n{\n    pinMode(RED_LED, OUTPUT);\n    pinMode(YELLOW_LED, OUTPUT);\n    pinMode(GREEN_LED, OUTPUT);\n}\n\nvoid loop()\n{\n    digitalWrite(RED_LED, HIGH);\n    delay(3000);\n    digitalWrite(RED_LED, LOW);\n\n    digitalWrite(GREEN_LED, HIGH);\n    delay(3000);\n    digitalWrite(GREEN_LED, LOW);\n\n    digitalWrite(YELLOW_LED, HIGH);\n    delay(1000);\n    digitalWrite(YELLOW_LED, LOW);\n}",
+      "connectionGuide": "D1 MINI - TRAFFIC LIGHT\n\nCONNECTION GUIDE\n================\n\nCOMPONENTS:\n- D1 Mini\n- Red LED\n- Yellow LED\n- Green LED\n- 3 x 220 ohm resistors\n\nCONNECTION:\n\nRED LED:\nD5 -> resistor -> LED positive\nGND -> LED negative\n\nYELLOW LED:\nD6 -> resistor -> LED positive\nGND -> LED negative\n\nGREEN LED:\nD7 -> resistor -> LED positive\nGND -> LED negative\n\nIMPORTANT:\nUse a resistor for each LED."
+    },
+
+    {
+      "name": "05 - Serial Monitor",
+      "description": "Send text and values to the Serial Monitor.",
+      "cppFile": "D1-Mini-Serial-Monitor.cpp",
+      "zipFile": "D1-Mini-Serial-Monitor.zip",
+      "code": "#include <Arduino.h>\n\nint counter = 0;\n\nvoid setup()\n{\n    Serial.begin(115200);\n\n    Serial.println(\"D1 Mini Started\");\n}\n\nvoid loop()\n{\n    counter++;\n\n    Serial.print(\"Counter: \");\n    Serial.println(counter);\n\n    delay(1000);\n}",
+      "connectionGuide": "D1 MINI - SERIAL MONITOR\n\nCONNECTION GUIDE\n================\n\nNo external components are required.\n\nUSB:\nConnect the D1 Mini to the computer using USB.\n\nARDUINO IDE:\nBoard: LOLIN(WEMOS) D1 & mini\n\nSERIAL MONITOR:\nOpen the Arduino IDE Serial Monitor.\nSet the baud rate to:\n\n115200\n\nThe counter value will be displayed every second."
+    },
+
+    {
+      "name": "06 - Analog Input",
+      "description": "Read the D1 Mini analog input A0.",
+      "cppFile": "D1-Mini-Analog-Input.cpp",
+      "zipFile": "D1-Mini-Analog-Input.zip",
+      "code": "#include <Arduino.h>\n\nconst int SENSOR_PIN = A0;\n\nvoid setup()\n{\n    Serial.begin(115200);\n}\n\nvoid loop()\n{\n    int sensorValue = analogRead(SENSOR_PIN);\n\n    Serial.print(\"Analog Value: \");\n    Serial.println(sensorValue);\n\n    delay(500);\n}",
+      "connectionGuide": "D1 MINI - ANALOG INPUT\n\nCONNECTION GUIDE\n================\n\nCOMPONENT:\n- Analog sensor or potentiometer\n\nCONNECTION:\n\nSensor output -> A0\nSensor GND    -> GND\nSensor VCC    -> appropriate supply voltage\n\nIMPORTANT:\nCheck the voltage limits of the specific D1 Mini board and sensor before connecting them.\n\nSERIAL MONITOR:\n115200 baud\n\nThe analog value will be displayed in the Serial Monitor."
+    },
+
+    {
+      "name": "07 - WiFi Connection",
+      "description": "Connect the D1 Mini to a WiFi network.",
+      "cppFile": "D1-Mini-WiFi.cpp",
+      "zipFile": "D1-Mini-WiFi.zip",
+      "code": "#include <Arduino.h>\n#include <ESP8266WiFi.h>\n\nconst char* WIFI_NAME = \"YOUR_WIFI_NAME\";\nconst char* WIFI_PASSWORD = \"YOUR_WIFI_PASSWORD\";\n\nvoid setup()\n{\n    Serial.begin(115200);\n\n    Serial.println();\n    Serial.println(\"Connecting to WiFi...\");\n\n    WiFi.begin(WIFI_NAME, WIFI_PASSWORD);\n\n    while (WiFi.status() != WL_CONNECTED)\n    {\n        delay(500);\n        Serial.print(\".\");\n    }\n\n    Serial.println();\n    Serial.println(\"WiFi Connected!\");\n\n    Serial.print(\"IP Address: \");\n    Serial.println(WiFi.localIP());\n}\n\nvoid loop()\n{\n}",
+      "connectionGuide": "D1 MINI - WIFI CONNECTION\n\nCONNECTION GUIDE\n================\n\nNo external components are required.\n\nBEFORE UPLOADING:\nOpen the .cpp file and change:\n\nYOUR_WIFI_NAME\n\nto your WiFi network name.\n\nThen change:\n\nYOUR_WIFI_PASSWORD\n\nto your WiFi password.\n\nUSB:\nConnect the D1 Mini to the computer using USB.\n\nSERIAL MONITOR:\nSet the baud rate to 115200.\n\nAfter connecting successfully, the D1 Mini will display its IP address."
+    },
+
+    {
+      "name": "08 - WiFi Web Server",
+      "description": "Create a simple web server on the D1 Mini.",
+      "cppFile": "D1-Mini-Web-Server.cpp",
+      "zipFile": "D1-Mini-Web-Server.zip",
+      "code": "#include <Arduino.h>\n#include <ESP8266WiFi.h>\n\nconst char* WIFI_NAME = \"YOUR_WIFI_NAME\";\nconst char* WIFI_PASSWORD = \"YOUR_WIFI_PASSWORD\";\n\nWiFiServer server(80);\n\nvoid setup()\n{\n    Serial.begin(115200);\n\n    WiFi.begin(WIFI_NAME, WIFI_PASSWORD);\n\n    while (WiFi.status() != WL_CONNECTED)\n    {\n        delay(500);\n        Serial.print(\".\");\n    }\n\n    Serial.println();\n    Serial.println(\"WiFi Connected\");\n    Serial.println(WiFi.localIP());\n\n    server.begin();\n}\n\nvoid loop()\n{\n    WiFiClient client = server.available();\n\n    if (!client)\n    {\n        return;\n    }\n\n    while (!client.available())\n    {\n        delay(1);\n    }\n\n    client.readStringUntil('\\\\r');\n\n    client.println(\"HTTP/1.1 200 OK\");\n    client.println(\"Content-Type: text/html\");\n    client.println(\"Connection: close\");\n    client.println();\n    client.println(\"<html>\");\n    client.println(\"<head><title>D1 Mini</title></head>\");\n    client.println(\"<body>\");\n    client.println(\"<h1>Hello from D1 Mini!</h1>\");\n    client.println(\"</body>\");\n    client.println(\"</html>\");\n\n    delay(1);\n    client.stop();\n}",
+      "connectionGuide": "D1 MINI - WIFI WEB SERVER\n\nCONNECTION GUIDE\n================\n\nNo external components are required.\n\nBEFORE UPLOADING:\nReplace:\n\nYOUR_WIFI_NAME\n\nwith your WiFi network name.\n\nReplace:\n\nYOUR_WIFI_PASSWORD\n\nwith your WiFi password.\n\nUPLOAD:\nConnect the D1 Mini through USB and upload the program.\n\nSERIAL MONITOR:\nSet to 115200 baud.\n\nAfter the D1 Mini connects to WiFi, an IP address will be displayed.\n\nOpen that IP address in a browser connected to the same network.\n\nExample:\nhttp://192.168.1.100\n"
+    },
+
+    {
+      "name": "09 - Button Counter",
+      "description": "Count button presses and display the result.",
+      "cppFile": "D1-Mini-Button-Counter.cpp",
+      "zipFile": "D1-Mini-Button-Counter.zip",
+      "code": "#include <Arduino.h>\n\nconst int BUTTON_PIN = D3;\n\nint buttonCount = 0;\nint lastButtonState = HIGH;\n\nvoid setup()\n{\n    pinMode(BUTTON_PIN, INPUT_PULLUP);\n\n    Serial.begin(115200);\n}\n\nvoid loop()\n{\n    int currentState = digitalRead(BUTTON_PIN);\n\n    if (lastButtonState == HIGH && currentState == LOW)\n    {\n        buttonCount++;\n\n        Serial.print(\"Button Count: \");\n        Serial.println(buttonCount);\n\n        delay(50);\n    }\n\n    lastButtonState = currentState;\n}",
+      "connectionGuide": "D1 MINI - BUTTON COUNTER\n\nCONNECTION GUIDE\n================\n\nBUTTON:\n\nOne side -> D3\nOther side -> GND\n\nThe program uses INPUT_PULLUP.\n\nSERIAL MONITOR:\n115200 baud\n\nEvery valid button press increases the counter by one."
+    },
+
+    {
+      "name": "10 - LED Control with Button",
+      "description": "Toggle an LED every time the button is pressed.",
+      "cppFile": "D1-Mini-LED-Button-Toggle.cpp",
+      "zipFile": "D1-Mini-LED-Button-Toggle.zip",
+      "code": "#include <Arduino.h>\n\nconst int BUTTON_PIN = D3;\nconst int LED_PIN = D5;\n\nbool ledState = false;\nint lastButtonState = HIGH;\n\nvoid setup()\n{\n    pinMode(BUTTON_PIN, INPUT_PULLUP);\n    pinMode(LED_PIN, OUTPUT);\n\n    digitalWrite(LED_PIN, LOW);\n}\n\nvoid loop()\n{\n    int currentButtonState = digitalRead(BUTTON_PIN);\n\n    if (lastButtonState == HIGH && currentButtonState == LOW)\n    {\n        ledState = !ledState;\n\n        digitalWrite(LED_PIN, ledState ? HIGH : LOW);\n\n        delay(200);\n    }\n\n    lastButtonState = currentButtonState;\n}",
+      "connectionGuide": "D1 MINI - LED BUTTON TOGGLE\n\nCONNECTION GUIDE\n================\n\nBUTTON:\nOne side -> D3\nOther side -> GND\n\nLED:\nD5 -> 220 ohm resistor -> LED positive\nGND -> LED negative\n\nOPERATION:\nPress the button once to turn the LED ON.\nPress it again to turn the LED OFF.\n\nIMPORTANT:\nUse an appropriate resistor with the external LED."
+    }
+  ]
+}

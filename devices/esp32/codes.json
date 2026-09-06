@@ -1,0 +1,87 @@
+{
+  "device": "ESP32",
+  "type": "ESP32",
+  "description": "C++ programs for the ESP32 development board.",
+  "lessons": [
+    {
+      "name": "01 Blink LED",
+      "description": "Blink an LED using the ESP32.",
+      "cppFile": "ESP32-Blink.cpp",
+      "zipFile": "ESP32-Blink.zip",
+      "code": "#define LED_PIN 2\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(LED_PIN, HIGH);\n  delay(1000);\n\n  digitalWrite(LED_PIN, LOW);\n  delay(1000);\n}",
+      "connectionGuide": "ESP32:\nUse GPIO 2 for the LED.\n\nExternal LED:\nAnode (+) -> 220 ohm resistor -> GPIO 2\nCathode (-) -> GND\n\nMany ESP32 DevKit boards also have a built-in LED on GPIO 2."
+    },
+    {
+      "name": "02 Button Input",
+      "description": "Read a push button and control an LED.",
+      "cppFile": "ESP32-Button.cpp",
+      "zipFile": "ESP32-Button.zip",
+      "code": "#define BUTTON_PIN 4\n#define LED_PIN 2\n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n\n  if (buttonState == LOW) {\n    digitalWrite(LED_PIN, HIGH);\n  } else {\n    digitalWrite(LED_PIN, LOW);\n  }\n}",
+      "connectionGuide": "Push Button:\nOne leg -> ESP32 GPIO 4\nOther leg -> GND\n\nLED:\nAnode (+) -> 220 ohm resistor -> GPIO 2\nCathode (-) -> GND\n\nThe internal pull-up resistor is enabled."
+    },
+    {
+      "name": "03 Buzzer",
+      "description": "Generate a tone using a buzzer.",
+      "cppFile": "ESP32-Buzzer.cpp",
+      "zipFile": "ESP32-Buzzer.zip",
+      "code": "#define BUZZER_PIN 25\n\nvoid setup() {\n  ledcAttach(BUZZER_PIN, 1000, 8);\n}\n\nvoid loop() {\n  ledcWriteTone(BUZZER_PIN, 1000);\n  delay(500);\n\n  ledcWriteTone(BUZZER_PIN, 0);\n  delay(500);\n}",
+      "connectionGuide": "Buzzer:\nPositive (+) -> ESP32 GPIO 25\nNegative (-) -> GND\n\nThis example uses the ESP32 LEDC tone function."
+    },
+    {
+      "name": "04 Traffic Light",
+      "description": "Control red, yellow, and green LEDs using the ESP32.",
+      "cppFile": "ESP32-Traffic-Light.cpp",
+      "zipFile": "ESP32-Traffic-Light.zip",
+      "code": "#define RED_LED 25\n#define YELLOW_LED 26\n#define GREEN_LED 27\n\nvoid setup() {\n  pinMode(RED_LED, OUTPUT);\n  pinMode(YELLOW_LED, OUTPUT);\n  pinMode(GREEN_LED, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(RED_LED, HIGH);\n  digitalWrite(YELLOW_LED, LOW);\n  digitalWrite(GREEN_LED, LOW);\n  delay(3000);\n\n  digitalWrite(RED_LED, LOW);\n  digitalWrite(YELLOW_LED, HIGH);\n  digitalWrite(GREEN_LED, LOW);\n  delay(1000);\n\n  digitalWrite(RED_LED, LOW);\n  digitalWrite(YELLOW_LED, LOW);\n  digitalWrite(GREEN_LED, HIGH);\n  delay(3000);\n}",
+      "connectionGuide": "Red LED:\nAnode (+) -> 220 ohm resistor -> GPIO 25\nCathode (-) -> GND\n\nYellow LED:\nAnode (+) -> 220 ohm resistor -> GPIO 26\nCathode (-) -> GND\n\nGreen LED:\nAnode (+) -> 220 ohm resistor -> GPIO 27\nCathode (-) -> GND."
+    },
+    {
+      "name": "05 Serial Monitor",
+      "description": "Display messages and sensor values in the Serial Monitor.",
+      "cppFile": "ESP32-Serial-Monitor.cpp",
+      "zipFile": "ESP32-Serial-Monitor.zip",
+      "code": "void setup() {\n  Serial.begin(115200);\n  Serial.println(\"ESP32 Serial Monitor\");\n}\n\nvoid loop() {\n  Serial.print(\"Analog GPIO 34: \");\n  Serial.println(analogRead(34));\n\n  delay(1000);\n}",
+      "connectionGuide": "No external components are required.\n\nConnect the ESP32 to the computer using USB.\n\nOpen Arduino IDE -> Tools -> Serial Monitor.\nSet the baud rate to 115200.\n\nGPIO 34 is input-only and is used here for analog reading."
+    },
+    {
+      "name": "06 Analog Input",
+      "description": "Read an analog value from a potentiometer.",
+      "cppFile": "ESP32-Analog-Input.cpp",
+      "zipFile": "ESP32-Analog-Input.zip",
+      "code": "#define POT_PIN 34\n\nvoid setup() {\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  int value = analogRead(POT_PIN);\n\n  Serial.print(\"Analog Value: \");\n  Serial.println(value);\n\n  delay(200);\n}",
+      "connectionGuide": "Potentiometer:\nOne outer pin -> 3.3V\nMiddle pin -> GPIO 34\nOther outer pin -> GND\n\nESP32 ADC readings are typically from 0 to 4095."
+    },
+    {
+      "name": "07 LED Fade",
+      "description": "Fade an LED using ESP32 PWM.",
+      "cppFile": "ESP32-LED-Fade.cpp",
+      "zipFile": "ESP32-LED-Fade.zip",
+      "code": "#define LED_PIN 18\n#define PWM_CHANNEL 0\n#define PWM_FREQUENCY 5000\n#define PWM_RESOLUTION 8\n\nvoid setup() {\n  ledcSetup(PWM_CHANNEL, PWM_FREQUENCY, PWM_RESOLUTION);\n  ledcAttachPin(LED_PIN, PWM_CHANNEL);\n}\n\nvoid loop() {\n  for (int brightness = 0; brightness <= 255; brightness++) {\n    ledcWrite(PWM_CHANNEL, brightness);\n    delay(10);\n  }\n\n  for (int brightness = 255; brightness >= 0; brightness--) {\n    ledcWrite(PWM_CHANNEL, brightness);\n    delay(10);\n  }\n}",
+      "connectionGuide": "LED:\nAnode (+) -> 220 ohm resistor -> GPIO 18\nCathode (-) -> GND\n\nGPIO 18 is used for PWM control."
+    },
+    {
+      "name": "08 Light Sensor",
+      "description": "Read an LDR and automatically control an LED.",
+      "cppFile": "ESP32-Light-Sensor.cpp",
+      "zipFile": "ESP32-Light-Sensor.zip",
+      "code": "#define LDR_PIN 34\n#define LED_PIN 2\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  int lightValue = analogRead(LDR_PIN);\n\n  Serial.print(\"Light Value: \");\n  Serial.println(lightValue);\n\n  if (lightValue < 2000) {\n    digitalWrite(LED_PIN, HIGH);\n  } else {\n    digitalWrite(LED_PIN, LOW);\n  }\n\n  delay(200);\n}",
+      "connectionGuide": "LDR circuit:\nUse the LDR and a 10K resistor as a voltage divider.\n\nVoltage divider output -> GPIO 34\n\nLED:\nAnode (+) -> 220 ohm resistor -> GPIO 2\nCathode (-) -> GND\n\nThe LED turns ON when the measured value is below 2000."
+    },
+    {
+      "name": "09 Button Counter",
+      "description": "Count button presses and display the count in Serial Monitor.",
+      "cppFile": "ESP32-Button-Counter.cpp",
+      "zipFile": "ESP32-Button-Counter.zip",
+      "code": "#define BUTTON_PIN 4\n\nint counter = 0;\nint lastButtonState = HIGH;\n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n\n  if (lastButtonState == HIGH && buttonState == LOW) {\n    counter++;\n\n    Serial.print(\"Button Presses: \");\n    Serial.println(counter);\n\n    delay(200);\n  }\n\n  lastButtonState = buttonState;\n}",
+      "connectionGuide": "Push Button:\nOne leg -> ESP32 GPIO 4\nOther leg -> GND\n\nThe internal pull-up resistor is used.\n\nOpen Serial Monitor at 115200 baud."
+    },
+    {
+      "name": "10 Button LED Toggle",
+      "description": "Toggle an LED ON and OFF each time the button is pressed.",
+      "cppFile": "ESP32-Button-LED-Toggle.cpp",
+      "zipFile": "ESP32-Button-LED-Toggle.zip",
+      "code": "#define BUTTON_PIN 4\n#define LED_PIN 2\n\nbool ledState = false;\nint lastButtonState = HIGH;\n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  pinMode(LED_PIN, OUTPUT);\n\n  digitalWrite(LED_PIN, LOW);\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n\n  if (lastButtonState == HIGH && buttonState == LOW) {\n    ledState = !ledState;\n    digitalWrite(LED_PIN, ledState ? HIGH : LOW);\n\n    delay(200);\n  }\n\n  lastButtonState = buttonState;\n}",
+      "connectionGuide": "Push Button:\nOne leg -> ESP32 GPIO 4\nOther leg -> GND\n\nLED:\nAnode (+) -> 220 ohm resistor -> GPIO 2\nCathode (-) -> GND\n\nEach button press toggles the LED between ON and OFF."
+    }
+  ]
+}
