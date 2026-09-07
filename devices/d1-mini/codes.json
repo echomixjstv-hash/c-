@@ -2,8 +2,8 @@
   "device": "D1 Mini",
   "type": "ESP8266",
   "description": "C++ programs for the D1 Mini ESP8266.",
-  "lessons": [
-    [
+  "lessons": 
+  [
   {
     "name": "Automatic Pet Feeder",
     "description": "Dispense pet food using a servo motor with a push button trigger. The servo opens the food dispenser, waits for a few seconds, then automatically closes it.",
