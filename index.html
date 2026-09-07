@@ -12,16 +12,6 @@
 
 <title>C++ Learning</title>
 
-<!--
-    JSZip
-    Used to create ZIP files directly
-    inside the browser.
--->
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js">
-</script>
-
-
 <style>
 
 /* =========================================================
@@ -34,33 +24,20 @@
     box-sizing:border-box;
 }
 
-
 html,
 body{
-
     width:100%;
     min-height:100%;
-
     background:#000;
-
     color:#fff;
-
     font-family:
         Arial,
         Helvetica,
         sans-serif;
-
 }
 
-
-/* =========================================================
-   BODY
-========================================================= */
-
 body{
-
     overflow:hidden;
-
 }
 
 
@@ -69,25 +46,16 @@ body{
 ========================================================= */
 
 .page{
-
     position:fixed;
-
     inset:0;
-
     width:100%;
     height:100vh;
-
     display:none;
-
     background:#000;
-
 }
 
-
 .page.active{
-
     display:flex;
-
 }
 
 
@@ -96,48 +64,29 @@ body{
 ========================================================= */
 
 #home{
-
     justify-content:center;
-
     align-items:center;
-
 }
 
-
 .home-button{
-
     padding:20px 40px;
-
     background:#fff;
-
     color:#000;
-
     border:1px solid #fff;
-
     border-radius:7px;
-
     font-size:21px;
-
     font-weight:bold;
-
     cursor:pointer;
-
     transition:
         background .2s,
         color .2s,
         transform .2s;
-
 }
 
-
 .home-button:hover{
-
     background:#000;
-
     color:#fff;
-
     transform:scale(1.03);
-
 }
 
 
@@ -146,124 +95,69 @@ body{
 ========================================================= */
 
 #introduction{
-
     overflow-y:auto;
-
     justify-content:center;
-
     align-items:flex-start;
-
     padding:60px 20px;
-
 }
-
 
 .introduction-container{
-
     width:100%;
-
     max-width:900px;
-
 }
-
 
 .introduction-container h1{
-
     font-size:48px;
-
     font-weight:bold;
-
     margin-bottom:30px;
-
 }
-
 
 .introduction-container h2{
-
     font-size:28px;
-
     margin-top:35px;
-
     margin-bottom:15px;
-
 }
-
 
 .introduction-container p{
-
     color:#ccc;
-
     font-size:18px;
-
     line-height:1.8;
-
     margin-bottom:15px;
-
 }
-
 
 .introduction-container ul{
-
     padding-left:30px;
-
     margin-top:10px;
-
 }
-
 
 .introduction-container li{
-
     color:#ccc;
-
     font-size:18px;
-
     line-height:1.8;
-
 }
-
 
 .enter-area{
-
     width:100%;
-
     text-align:center;
-
     margin-top:60px;
-
     padding-bottom:50px;
-
 }
-
 
 .enter-button{
-
     padding:18px 45px;
-
     background:#fff;
-
     color:#000;
-
     border:1px solid #fff;
-
     border-radius:7px;
-
     font-size:19px;
-
     font-weight:bold;
-
     cursor:pointer;
-
     transition:.2s;
-
 }
 
-
 .enter-button:hover{
-
     background:#000;
-
     color:#fff;
-
 }
 
 
@@ -272,148 +166,84 @@ body{
 ========================================================= */
 
 #devices{
-
     flex-direction:column;
-
     overflow-y:auto;
-
     align-items:center;
-
     padding:50px 20px;
-
 }
-
 
 .device-header{
-
     text-align:center;
-
     margin-bottom:40px;
-
 }
-
 
 .device-header h1{
-
     font-size:42px;
-
     margin-bottom:10px;
-
 }
-
 
 .device-header p{
-
     color:#888;
-
     font-size:16px;
-
 }
 
-
 .device-grid{
-
     width:100%;
-
     max-width:1000px;
-
     display:grid;
-
     grid-template-columns:
         repeat(
             auto-fit,
             minmax(210px,1fr)
         );
-
     gap:18px;
-
 }
-
 
 .device-card{
-
     min-height:155px;
-
     background:#0b0b0b;
-
     border:1px solid #292929;
-
     border-radius:9px;
-
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
-
     cursor:pointer;
-
     transition:
-
         border-color .2s,
-
         background .2s,
-
         transform .2s;
-
 }
-
 
 .device-card:hover{
-
     border-color:#fff;
-
     background:#111;
-
     transform:translateY(-3px);
-
 }
-
 
 .device-card h2{
-
     font-size:23px;
-
     margin-bottom:9px;
-
 }
-
 
 .device-card span{
-
     color:#777;
-
     font-size:14px;
-
 }
-
 
 .device-card.disabled{
-
     opacity:.45;
-
     cursor:not-allowed;
-
 }
-
 
 .device-card.disabled:hover{
-
     transform:none;
-
     border-color:#292929;
-
     background:#0b0b0b;
-
 }
 
-
 .devices-back{
-
     margin-top:40px;
-
 }
 
 
@@ -422,160 +252,141 @@ body{
 ========================================================= */
 
 #lessons{
-
     flex-direction:column;
-
     overflow-y:auto;
-
     align-items:center;
-
     padding:45px 20px;
-
 }
-
 
 .lesson-container{
-
     width:100%;
-
     max-width:1000px;
-
 }
-
 
 .lesson-header{
-
     text-align:center;
-
     margin-bottom:35px;
-
 }
-
 
 .lesson-header h1{
-
     font-size:40px;
-
     margin-bottom:10px;
-
 }
-
 
 .lesson-header p{
-
     color:#888;
-
 }
-
 
 .lesson-list{
-
     display:flex;
-
     flex-direction:column;
-
     gap:14px;
-
 }
-
 
 .lesson-item{
-
     width:100%;
-
-    min-height:85px;
-
     background:#0b0b0b;
-
     border:1px solid #292929;
-
     border-radius:8px;
-
-    padding:18px 20px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:20px;
-
+    padding:20px;
 }
-
 
 .lesson-information{
-
+    width:100%;
     min-width:0;
-
 }
-
 
 .lesson-information h3{
-
     font-size:19px;
-
     margin-bottom:7px;
-
 }
-
 
 .lesson-information p{
-
     color:#777;
-
     font-size:14px;
-
 }
 
 
-.lesson-actions{
+/* =========================================================
+   CODE / CONNECTION GUIDE
+========================================================= */
 
-    flex-shrink:0;
-
+.lesson-content{
+    width:100%;
+    margin-top:18px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
 }
 
-
-.download-button{
-
-    padding:12px 22px;
-
-    background:#fff;
-
-    color:#000;
-
-    border:1px solid #fff;
-
-    border-radius:6px;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
-
+.content-box{
+    background:#080808;
+    border:1px solid #292929;
+    border-radius:9px;
+    overflow:hidden;
+    min-width:0;
 }
 
-
-.download-button:hover{
-
-    background:#000;
-
-    color:#fff;
-
-}
-
-
-.lesson-bottom{
-
+.content-box-header{
     display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 14px;
+    border-bottom:1px solid #292929;
+    background:#0d0d0d;
+}
 
-    justify-content:center;
+.content-box-header h4{
+    font-size:15px;
+    margin:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
 
-    margin-top:35px;
+.copy-button{
+    flex-shrink:0;
+    padding:7px 12px;
+    background:#fff;
+    color:#000;
+    border:1px solid #fff;
+    border-radius:5px;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
+.copy-button:hover{
+    background:#000;
+    color:#fff;
+}
+
+.code-display,
+.guide-display{
+    margin:0;
+    padding:16px;
+    min-height:180px;
+    max-height:380px;
+    overflow:auto;
+    white-space:pre-wrap;
+    word-break:break-word;
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+    font-size:13px;
+    line-height:1.55;
+    color:#ddd;
+}
+
+.guide-display{
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    color:#ccc;
+    line-height:1.6;
 }
 
 
@@ -584,28 +395,23 @@ body{
 ========================================================= */
 
 .back-button{
-
     padding:12px 25px;
-
     background:transparent;
-
     color:#fff;
-
     border:1px solid #444;
-
     border-radius:6px;
-
     font-size:14px;
-
     cursor:pointer;
-
 }
 
-
 .back-button:hover{
-
     border-color:#fff;
+}
 
+.lesson-bottom{
+    display:flex;
+    justify-content:center;
+    margin-top:35px;
 }
 
 
@@ -614,61 +420,35 @@ body{
 ========================================================= */
 
 #loading{
-
     position:fixed;
-
     inset:0;
-
     z-index:99999;
-
     display:none;
-
     justify-content:center;
-
     align-items:center;
-
     background:rgba(0,0,0,.92);
-
 }
-
 
 .loading-box{
-
     text-align:center;
-
 }
-
 
 .loader{
-
     width:45px;
-
     height:45px;
-
     border-radius:50%;
-
     border:4px solid #333;
-
     border-top-color:#fff;
-
     animation:
         loading-spin .8s linear infinite;
-
     margin:auto;
-
 }
-
 
 .loading-box p{
-
     margin-top:16px;
-
     color:#ccc;
-
     font-size:15px;
-
 }
-
 
 @keyframes loading-spin{
 
@@ -688,58 +468,34 @@ body{
 ========================================================= */
 
 #message{
-
     position:fixed;
-
     left:50%;
-
     bottom:30px;
-
     transform:
         translateX(-50%)
         translateY(20px);
-
     z-index:100000;
-
     min-width:280px;
-
     max-width:90%;
-
     padding:14px 20px;
-
     background:#111;
-
     border:1px solid #444;
-
     border-radius:7px;
-
     color:#fff;
-
     text-align:center;
-
     font-size:14px;
-
     opacity:0;
-
     pointer-events:none;
-
     transition:
-
         opacity .25s,
-
         transform .25s;
-
 }
 
-
 #message.show{
-
     opacity:1;
-
     transform:
         translateX(-50%)
         translateY(0);
-
 }
 
 
@@ -747,73 +503,41 @@ body{
    MOBILE
 ========================================================= */
 
-@media(max-width:600px){
+@media(max-width:700px){
 
     .home-button{
-
         padding:17px 25px;
-
         font-size:17px;
-
     }
-
 
     .introduction-container h1{
-
         font-size:34px;
-
     }
-
 
     .introduction-container h2{
-
         font-size:24px;
-
     }
-
 
     .introduction-container p,
     .introduction-container li{
-
         font-size:16px;
-
     }
-
 
     .device-header h1{
-
         font-size:31px;
-
     }
-
 
     .lesson-header h1{
-
         font-size:30px;
-
     }
 
-
-    .lesson-item{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
+    .lesson-content{
+        grid-template-columns:1fr;
     }
 
-
-    .lesson-actions{
-
-        width:100%;
-
-    }
-
-
-    .download-button{
-
-        width:100%;
-
+    .code-display,
+    .guide-display{
+        max-height:300px;
     }
 
 }
@@ -826,16 +550,11 @@ body{
 @media(max-height:600px){
 
     #introduction{
-
         padding-top:35px;
-
     }
 
-
     .device-card{
-
         min-height:120px;
-
     }
 
 }
@@ -857,7 +576,6 @@ body{
     class="page active"
 >
 
-
     <button
         class="home-button"
         onclick="openIntroduction()"
@@ -866,7 +584,6 @@ body{
         INTRODUCTION TO C++
 
     </button>
-
 
 </section>
 
@@ -881,14 +598,11 @@ body{
     class="page"
 >
 
-
     <div class="introduction-container">
-
 
         <h1>
             Introduction to C++
         </h1>
-
 
         <p>
             C++ is a powerful general-purpose programming
@@ -897,11 +611,9 @@ body{
             applications.
         </p>
 
-
         <h2>
             What is C++?
         </h2>
-
 
         <p>
             C++ is a programming language that provides
@@ -909,11 +621,9 @@ body{
             low-level control over computer resources.
         </p>
 
-
         <h2>
             C++ and Microcontrollers
         </h2>
-
 
         <p>
             C++-based programming is widely used with
@@ -922,11 +632,9 @@ body{
             platforms.
         </p>
 
-
         <h2>
             What You Can Learn
         </h2>
-
 
         <ul>
 
@@ -967,7 +675,6 @@ body{
 
         <div class="enter-area">
 
-
             <button
                 class="enter-button"
                 onclick="openDevices()"
@@ -977,12 +684,9 @@ body{
 
             </button>
 
-
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -997,7 +701,6 @@ body{
     class="page"
 >
 
-
     <div class="device-header">
 
         <h1>
@@ -1009,7 +712,6 @@ body{
         </p>
 
     </div>
-
 
 
     <div class="device-grid">
@@ -1131,7 +833,6 @@ body{
     </div>
 
 
-
     <div class="devices-back">
 
         <button
@@ -1145,7 +846,6 @@ body{
 
     </div>
 
-
 </section>
 
 
@@ -1158,7 +858,6 @@ body{
     id="lessons"
     class="page"
 >
-
 
     <div class="lesson-container">
 
@@ -1199,7 +898,6 @@ body{
 
     </div>
 
-
 </section>
 
 
@@ -1210,20 +908,15 @@ body{
 
 <div id="loading">
 
-
     <div class="loading-box">
-
 
         <div class="loader"></div>
 
-
         <p id="loading-text">
-            Creating ZIP file...
+            Loading...
         </p>
 
-
     </div>
-
 
 </div>
 
@@ -1241,14 +934,6 @@ body{
 
 /* =========================================================
    DEVICE CONFIGURATION
-=========================================================
-
-   Each device has its own folder.
-
-   Example:
-
-   devices/d1-mini/codes.json
-
 ========================================================= */
 
 const DEVICE_CONFIG = {
@@ -1339,7 +1024,6 @@ function showPage(id){
     const pages =
         document.querySelectorAll(".page");
 
-
     pages.forEach(function(page){
 
         page.classList.remove("active");
@@ -1350,13 +1034,11 @@ function showPage(id){
     const selected =
         document.getElementById(id);
 
-
     if(selected){
 
         selected.classList.add("active");
 
     }
-
 
     window.scrollTo(0,0);
 
@@ -1397,7 +1079,6 @@ async function selectDevice(deviceId){
     const device =
         DEVICE_CONFIG[deviceId];
 
-
     if(!device){
 
         showMessage(
@@ -1411,10 +1092,6 @@ async function selectDevice(deviceId){
 
     currentDevice = deviceId;
 
-
-    /*
-        Show loading while reading JSON.
-    */
 
     showLoading(
         "Loading device content..."
@@ -1451,27 +1128,20 @@ async function selectDevice(deviceId){
 
         hideLoading();
 
-
         showPage("lessons");
 
 
     }
+
     catch(error){
 
         hideLoading();
 
-
         console.error(error);
-
 
         showMessage(
             "Unable to load device content."
         );
-
-
-        /*
-            Helpful console message.
-        */
 
         console.log(
             "Expected JSON file:",
@@ -1508,34 +1178,18 @@ function displayLessons(device, data){
         );
 
 
-    /*
-        Device name
-    */
-
     title.textContent =
         data.device ||
         device.name;
 
-
-    /*
-        Device description
-    */
 
     description.textContent =
         data.description ||
         "Available C++ programs";
 
 
-    /*
-        Clear previous lessons.
-    */
-
     lessonList.innerHTML = "";
 
-
-    /*
-        Check lessons.
-    */
 
     if(
         !Array.isArray(data.lessons) ||
@@ -1570,10 +1224,6 @@ function displayLessons(device, data){
     }
 
 
-    /*
-        Create lesson buttons.
-    */
-
     data.lessons.forEach(
         function(lesson,index){
 
@@ -1586,6 +1236,10 @@ function displayLessons(device, data){
             item.className =
                 "lesson-item";
 
+
+            /* =================================================
+               LESSON INFORMATION
+            ================================================= */
 
             const information =
                 document.createElement(
@@ -1629,55 +1283,322 @@ function displayLessons(device, data){
             );
 
 
-            const actions =
-                document.createElement(
-                    "div"
-                );
-
-
-            actions.className =
-                "lesson-actions";
-
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-
-            button.className =
-                "download-button";
-
-
-            button.textContent =
-                "DOWNLOAD ZIP";
-
-
-            button.addEventListener(
-                "click",
-                function(){
-
-                    downloadLessonZIP(
-                        device,
-                        lesson
-                    );
-
-                }
-            );
-
-
-            actions.appendChild(
-                button
-            );
-
-
             item.appendChild(
                 information
             );
 
 
+            /* =================================================
+               CONTENT AREA
+            ================================================= */
+
+            const content =
+                document.createElement(
+                    "div"
+                );
+
+
+            content.className =
+                "lesson-content";
+
+
+            /* =================================================
+               CONNECTION GUIDE BOX
+            ================================================= */
+
+            const guideBox =
+                document.createElement(
+                    "div"
+                );
+
+
+            guideBox.className =
+                "content-box";
+
+
+            const guideHeader =
+                document.createElement(
+                    "div"
+                );
+
+
+            guideHeader.className =
+                "content-box-header";
+
+
+            const guideTitle =
+                document.createElement(
+                    "h4"
+                );
+
+
+            guideTitle.textContent =
+                "CONNECTION GUIDE";
+
+
+            guideHeader.appendChild(
+                guideTitle
+            );
+
+
+            const guideDisplay =
+                document.createElement(
+                    "pre"
+                );
+
+
+            guideDisplay.className =
+                "guide-display";
+
+
+            guideDisplay.textContent =
+                typeof lesson.connectionGuide === "string"
+                    ? lesson.connectionGuide
+                    : "Connection guide is not available.";
+
+
+            guideBox.appendChild(
+                guideHeader
+            );
+
+
+            guideBox.appendChild(
+                guideDisplay
+            );
+
+
+            /* =================================================
+               C++ CODE BOX
+            ================================================= */
+
+            const codeBox =
+                document.createElement(
+                    "div"
+                );
+
+
+            codeBox.className =
+                "content-box";
+
+
+            const codeHeader =
+                document.createElement(
+                    "div"
+                );
+
+
+            codeHeader.className =
+                "content-box-header";
+
+
+            const codeTitle =
+                document.createElement(
+                    "h4"
+                );
+
+
+            codeTitle.textContent =
+                lesson.cppFile ||
+                "program.cpp";
+
+
+            /* =================================================
+               COPY BUTTON
+            ================================================= */
+
+            const copyButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            copyButton.className =
+                "copy-button";
+
+
+            copyButton.textContent =
+                "COPY";
+
+
+            copyButton.addEventListener(
+                "click",
+                async function(){
+
+                    const code =
+                        typeof lesson.code === "string"
+                            ? lesson.code
+                            : "";
+
+
+                    if(!code){
+
+                        showMessage(
+                            "C++ code is missing."
+                        );
+
+                        return;
+
+                    }
+
+
+                    try{
+
+                        await navigator.clipboard.writeText(
+                            code
+                        );
+
+
+                        copyButton.textContent =
+                            "COPIED!";
+
+
+                        showMessage(
+                            "C++ code copied to clipboard."
+                        );
+
+
+                        setTimeout(
+                            function(){
+
+                                copyButton.textContent =
+                                    "COPY";
+
+                            },
+                            1500
+                        );
+
+                    }
+
+                    catch(error){
+
+                        /*
+                            Fallback for browsers
+                            that block clipboard API.
+                        */
+
+                        const area =
+                            document.createElement(
+                                "textarea"
+                            );
+
+
+                        area.value =
+                            code;
+
+
+                        area.style.position =
+                            "fixed";
+
+
+                        area.style.opacity =
+                            "0";
+
+
+                        document.body.appendChild(
+                            area
+                        );
+
+
+                        area.select();
+
+
+                        try{
+
+                            document.execCommand(
+                                "copy"
+                            );
+
+
+                            copyButton.textContent =
+                                "COPIED!";
+
+
+                            showMessage(
+                                "C++ code copied to clipboard."
+                            );
+
+
+                            setTimeout(
+                                function(){
+
+                                    copyButton.textContent =
+                                        "COPY";
+
+                                },
+                                1500
+                            );
+
+                        }
+
+                        catch(copyError){
+
+                            showMessage(
+                                "Unable to copy the C++ code."
+                            );
+
+                        }
+
+
+                        area.remove();
+
+                    }
+
+                }
+            );
+
+
+            codeHeader.appendChild(
+                codeTitle
+            );
+
+
+            codeHeader.appendChild(
+                copyButton
+            );
+
+
+            const codeDisplay =
+                document.createElement(
+                    "pre"
+                );
+
+
+            codeDisplay.className =
+                "code-display";
+
+
+            codeDisplay.textContent =
+                typeof lesson.code === "string"
+                    ? lesson.code
+                    : "C++ code is not available.";
+
+
+            codeBox.appendChild(
+                codeHeader
+            );
+
+
+            codeBox.appendChild(
+                codeDisplay
+            );
+
+
+            /* =================================================
+               ADD BOTH BOXES
+            ================================================= */
+
+            content.appendChild(
+                guideBox
+            );
+
+
+            content.appendChild(
+                codeBox
+            );
+
+
             item.appendChild(
-                actions
+                content
             );
 
 
@@ -1687,235 +1608,6 @@ function displayLessons(device, data){
 
         }
     );
-
-}
-
-
-
-/* =========================================================
-   DOWNLOAD ZIP
-========================================================= */
-
-async function downloadLessonZIP(
-    device,
-    lesson
-){
-
-    /*
-        Check JSZip.
-    */
-
-    if(typeof JSZip === "undefined"){
-
-        showMessage(
-            "JSZip library is not available."
-        );
-
-        return;
-
-    }
-
-
-    /*
-        Required C++ code.
-    */
-
-    if(
-        typeof lesson.code !== "string"
-    ){
-
-        showMessage(
-            "C++ code is missing."
-        );
-
-        return;
-
-    }
-
-
-    /*
-        Required connection guide.
-    */
-
-    if(
-        typeof lesson.connectionGuide !==
-        "string"
-    ){
-
-        showMessage(
-            "Connection guide is missing."
-        );
-
-        return;
-
-    }
-
-
-    showLoading(
-        "Creating ZIP file..."
-    );
-
-
-    try{
-
-        const zip =
-            new JSZip();
-
-
-        /*
-            Get filename.
-
-            Example:
-            D1-Mini-Blink.cpp
-        */
-
-        const cppFile =
-            lesson.cppFile ||
-            "program.cpp";
-
-
-        /*
-            FILE #1
-            C++ FILE
-        */
-
-        zip.file(
-            cppFile,
-            lesson.code
-        );
-
-
-        /*
-            FILE #2
-            CONNECTION GUIDE
-        */
-
-        zip.file(
-            "connection guide.txt",
-            lesson.connectionGuide
-        );
-
-
-        /*
-            Generate ZIP.
-        */
-
-        const blob =
-            await zip.generateAsync({
-
-                type:"blob",
-
-                compression:"DEFLATE",
-
-                compressionOptions:{
-
-                    level:9
-
-                }
-
-            });
-
-
-        /*
-            ZIP filename.
-        */
-
-        let zipFile =
-            lesson.zipFile;
-
-
-        /*
-            If zipFile is not supplied,
-            automatically create one.
-        */
-
-        if(
-            !zipFile ||
-            typeof zipFile !== "string"
-        ){
-
-            zipFile =
-                cppFile
-                    .replace(
-                        /\.cpp$/i,
-                        ""
-                    )
-                + ".zip";
-
-        }
-
-
-        /*
-            Create browser download.
-        */
-
-        const url =
-            URL.createObjectURL(blob);
-
-
-        const link =
-            document.createElement("a");
-
-
-        link.href =
-            url;
-
-
-        link.download =
-            zipFile;
-
-
-        document.body.appendChild(
-            link
-        );
-
-
-        link.click();
-
-
-        link.remove();
-
-
-        /*
-            Release memory.
-        */
-
-        setTimeout(
-            function(){
-
-                URL.revokeObjectURL(
-                    url
-                );
-
-            },
-            1000
-        );
-
-
-        hideLoading();
-
-
-        showMessage(
-            "ZIP file created successfully."
-        );
-
-    }
-    catch(error){
-
-        hideLoading();
-
-
-        console.error(
-            "ZIP ERROR:",
-            error
-        );
-
-
-        showMessage(
-            "Unable to create ZIP file."
-        );
-
-    }
 
 }
 
