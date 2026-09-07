@@ -24,20 +24,33 @@
     box-sizing:border-box;
 }
 
+
 html,
 body{
+
     width:100%;
     min-height:100%;
+
     background:#000;
+
     color:#fff;
+
     font-family:
         Arial,
         Helvetica,
         sans-serif;
+
 }
 
+
+/* =========================================================
+   BODY
+========================================================= */
+
 body{
+
     overflow:hidden;
+
 }
 
 
@@ -46,16 +59,25 @@ body{
 ========================================================= */
 
 .page{
+
     position:fixed;
+
     inset:0;
+
     width:100%;
     height:100vh;
+
     display:none;
+
     background:#000;
+
 }
 
+
 .page.active{
+
     display:flex;
+
 }
 
 
@@ -64,29 +86,48 @@ body{
 ========================================================= */
 
 #home{
+
     justify-content:center;
+
     align-items:center;
+
 }
 
+
 .home-button{
+
     padding:20px 40px;
+
     background:#fff;
+
     color:#000;
+
     border:1px solid #fff;
+
     border-radius:7px;
+
     font-size:21px;
+
     font-weight:bold;
+
     cursor:pointer;
+
     transition:
         background .2s,
         color .2s,
         transform .2s;
+
 }
 
+
 .home-button:hover{
+
     background:#000;
+
     color:#fff;
+
     transform:scale(1.03);
+
 }
 
 
@@ -95,69 +136,124 @@ body{
 ========================================================= */
 
 #introduction{
+
     overflow-y:auto;
+
     justify-content:center;
+
     align-items:flex-start;
+
     padding:60px 20px;
+
 }
+
 
 .introduction-container{
+
     width:100%;
+
     max-width:900px;
+
 }
+
 
 .introduction-container h1{
+
     font-size:48px;
+
     font-weight:bold;
+
     margin-bottom:30px;
+
 }
+
 
 .introduction-container h2{
+
     font-size:28px;
+
     margin-top:35px;
+
     margin-bottom:15px;
+
 }
+
 
 .introduction-container p{
+
     color:#ccc;
+
     font-size:18px;
+
     line-height:1.8;
+
     margin-bottom:15px;
+
 }
+
 
 .introduction-container ul{
+
     padding-left:30px;
+
     margin-top:10px;
+
 }
+
 
 .introduction-container li{
+
     color:#ccc;
+
     font-size:18px;
+
     line-height:1.8;
+
 }
+
 
 .enter-area{
+
     width:100%;
+
     text-align:center;
+
     margin-top:60px;
+
     padding-bottom:50px;
+
 }
+
 
 .enter-button{
+
     padding:18px 45px;
+
     background:#fff;
+
     color:#000;
+
     border:1px solid #fff;
+
     border-radius:7px;
+
     font-size:19px;
+
     font-weight:bold;
+
     cursor:pointer;
+
     transition:.2s;
+
 }
 
+
 .enter-button:hover{
+
     background:#000;
+
     color:#fff;
+
 }
 
 
@@ -166,84 +262,148 @@ body{
 ========================================================= */
 
 #devices{
+
     flex-direction:column;
+
     overflow-y:auto;
+
     align-items:center;
+
     padding:50px 20px;
+
 }
+
 
 .device-header{
+
     text-align:center;
+
     margin-bottom:40px;
+
 }
+
 
 .device-header h1{
+
     font-size:42px;
+
     margin-bottom:10px;
+
 }
+
 
 .device-header p{
+
     color:#888;
+
     font-size:16px;
+
 }
 
+
 .device-grid{
+
     width:100%;
+
     max-width:1000px;
+
     display:grid;
+
     grid-template-columns:
         repeat(
             auto-fit,
             minmax(210px,1fr)
         );
+
     gap:18px;
+
 }
+
 
 .device-card{
+
     min-height:155px;
+
     background:#0b0b0b;
+
     border:1px solid #292929;
+
     border-radius:9px;
+
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
     align-items:center;
+
     cursor:pointer;
+
     transition:
+
         border-color .2s,
+
         background .2s,
+
         transform .2s;
+
 }
+
 
 .device-card:hover{
+
     border-color:#fff;
+
     background:#111;
+
     transform:translateY(-3px);
+
 }
+
 
 .device-card h2{
+
     font-size:23px;
+
     margin-bottom:9px;
+
 }
+
 
 .device-card span{
+
     color:#777;
+
     font-size:14px;
+
 }
+
 
 .device-card.disabled{
+
     opacity:.45;
+
     cursor:not-allowed;
+
 }
+
 
 .device-card.disabled:hover{
+
     transform:none;
+
     border-color:#292929;
+
     background:#0b0b0b;
+
 }
 
+
 .devices-back{
+
     margin-top:40px;
+
 }
 
 
@@ -252,141 +412,160 @@ body{
 ========================================================= */
 
 #lessons{
+
     flex-direction:column;
+
     overflow-y:auto;
+
     align-items:center;
+
     padding:45px 20px;
+
 }
+
 
 .lesson-container{
+
     width:100%;
+
     max-width:1000px;
+
 }
+
 
 .lesson-header{
+
     text-align:center;
+
     margin-bottom:35px;
+
 }
+
 
 .lesson-header h1{
+
     font-size:40px;
+
     margin-bottom:10px;
+
 }
+
 
 .lesson-header p{
+
     color:#888;
+
 }
+
 
 .lesson-list{
+
     display:flex;
+
     flex-direction:column;
+
     gap:14px;
+
 }
+
 
 .lesson-item{
+
     width:100%;
+
+    min-height:85px;
+
     background:#0b0b0b;
+
     border:1px solid #292929;
+
     border-radius:8px;
-    padding:20px;
+
+    padding:18px 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
 }
+
 
 .lesson-information{
-    width:100%;
+
     min-width:0;
+
 }
+
 
 .lesson-information h3{
+
     font-size:19px;
+
     margin-bottom:7px;
+
 }
+
 
 .lesson-information p{
+
     color:#777;
+
     font-size:14px;
+
 }
 
 
-/* =========================================================
-   CODE / CONNECTION GUIDE
-========================================================= */
+.lesson-actions{
 
-.lesson-content{
-    width:100%;
-    margin-top:18px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-}
-
-.content-box{
-    background:#080808;
-    border:1px solid #292929;
-    border-radius:9px;
-    overflow:hidden;
-    min-width:0;
-}
-
-.content-box-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:12px 14px;
-    border-bottom:1px solid #292929;
-    background:#0d0d0d;
-}
-
-.content-box-header h4{
-    font-size:15px;
-    margin:0;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-}
-
-.copy-button{
     flex-shrink:0;
-    padding:7px 12px;
+
+}
+
+
+.download-button{
+
+    padding:12px 22px;
+
     background:#fff;
+
     color:#000;
+
     border:1px solid #fff;
-    border-radius:5px;
-    font-size:12px;
+
+    border-radius:6px;
+
+    font-size:14px;
+
     font-weight:bold;
+
     cursor:pointer;
+
+    transition:.2s;
+
 }
 
-.copy-button:hover{
+
+.download-button:hover{
+
     background:#000;
+
     color:#fff;
+
 }
 
-.code-display,
-.guide-display{
-    margin:0;
-    padding:16px;
-    min-height:180px;
-    max-height:380px;
-    overflow:auto;
-    white-space:pre-wrap;
-    word-break:break-word;
-    font-family:
-        Consolas,
-        "Courier New",
-        monospace;
-    font-size:13px;
-    line-height:1.55;
-    color:#ddd;
-}
 
-.guide-display{
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-    color:#ccc;
-    line-height:1.6;
+.lesson-bottom{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:35px;
+
 }
 
 
@@ -395,23 +574,28 @@ body{
 ========================================================= */
 
 .back-button{
+
     padding:12px 25px;
+
     background:transparent;
+
     color:#fff;
+
     border:1px solid #444;
+
     border-radius:6px;
+
     font-size:14px;
+
     cursor:pointer;
+
 }
+
 
 .back-button:hover{
-    border-color:#fff;
-}
 
-.lesson-bottom{
-    display:flex;
-    justify-content:center;
-    margin-top:35px;
+    border-color:#fff;
+
 }
 
 
@@ -420,35 +604,61 @@ body{
 ========================================================= */
 
 #loading{
+
     position:fixed;
+
     inset:0;
+
     z-index:99999;
+
     display:none;
+
     justify-content:center;
+
     align-items:center;
+
     background:rgba(0,0,0,.92);
+
 }
+
 
 .loading-box{
+
     text-align:center;
+
 }
+
 
 .loader{
+
     width:45px;
+
     height:45px;
+
     border-radius:50%;
+
     border:4px solid #333;
+
     border-top-color:#fff;
+
     animation:
         loading-spin .8s linear infinite;
+
     margin:auto;
+
 }
 
+
 .loading-box p{
+
     margin-top:16px;
+
     color:#ccc;
+
     font-size:15px;
+
 }
+
 
 @keyframes loading-spin{
 
@@ -468,34 +678,58 @@ body{
 ========================================================= */
 
 #message{
+
     position:fixed;
+
     left:50%;
+
     bottom:30px;
+
     transform:
         translateX(-50%)
         translateY(20px);
+
     z-index:100000;
+
     min-width:280px;
+
     max-width:90%;
+
     padding:14px 20px;
+
     background:#111;
+
     border:1px solid #444;
+
     border-radius:7px;
+
     color:#fff;
+
     text-align:center;
+
     font-size:14px;
+
     opacity:0;
+
     pointer-events:none;
+
     transition:
+
         opacity .25s,
+
         transform .25s;
+
 }
 
+
 #message.show{
+
     opacity:1;
+
     transform:
         translateX(-50%)
         translateY(0);
+
 }
 
 
@@ -503,41 +737,73 @@ body{
    MOBILE
 ========================================================= */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
     .home-button{
+
         padding:17px 25px;
+
         font-size:17px;
+
     }
+
 
     .introduction-container h1{
+
         font-size:34px;
+
     }
 
+
     .introduction-container h2{
+
         font-size:24px;
+
     }
+
 
     .introduction-container p,
     .introduction-container li{
+
         font-size:16px;
+
     }
+
 
     .device-header h1{
+
         font-size:31px;
+
     }
+
 
     .lesson-header h1{
+
         font-size:30px;
+
     }
 
-    .lesson-content{
-        grid-template-columns:1fr;
+
+    .lesson-item{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
     }
 
-    .code-display,
-    .guide-display{
-        max-height:300px;
+
+    .lesson-actions{
+
+        width:100%;
+
+    }
+
+
+    .download-button{
+
+        width:100%;
+
     }
 
 }
@@ -550,13 +816,140 @@ body{
 @media(max-height:600px){
 
     #introduction{
+
         padding-top:35px;
+
     }
+
 
     .device-card{
+
         min-height:120px;
+
     }
 
+}
+
+/* =========================================================
+   PROGRAM DETAIL PAGE
+========================================================= */
+
+#lesson-detail{
+    flex-direction:column;
+    overflow-y:auto;
+    align-items:center;
+    padding:45px 20px;
+}
+
+.detail-container{
+    width:100%;
+    max-width:1000px;
+}
+
+.detail-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.detail-header h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.detail-header p{
+    color:#888;
+    font-size:16px;
+    line-height:1.6;
+}
+
+.detail-content{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.content-box{
+    background:#080808;
+    border:1px solid #292929;
+    border-radius:9px;
+    overflow:hidden;
+    min-width:0;
+}
+
+.content-box-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:13px 15px;
+    border-bottom:1px solid #292929;
+    background:#0d0d0d;
+}
+
+.content-box-header h4{
+    font-size:15px;
+    margin:0;
+}
+
+.copy-button{
+    padding:7px 13px;
+    background:#fff;
+    color:#000;
+    border:1px solid #fff;
+    border-radius:5px;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.copy-button:hover{
+    background:#000;
+    color:#fff;
+}
+
+.code-display,
+.guide-display{
+    margin:0;
+    padding:18px;
+    min-height:300px;
+    max-height:520px;
+    overflow:auto;
+    white-space:pre-wrap;
+    word-break:break-word;
+    font-family:Consolas,"Courier New",monospace;
+    font-size:13px;
+    line-height:1.55;
+    color:#ddd;
+}
+
+.guide-display{
+    font-family:Arial,Helvetica,sans-serif;
+    color:#ccc;
+}
+
+.detail-bottom{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:30px;
+    padding-bottom:20px;
+}
+
+@media(max-width:700px){
+    .detail-content{
+        grid-template-columns:1fr;
+    }
+
+    .detail-header h1{
+        font-size:30px;
+    }
+
+    .code-display,
+    .guide-display{
+        min-height:240px;
+        max-height:420px;
+    }
 }
 
 </style>
@@ -576,6 +969,7 @@ body{
     class="page active"
 >
 
+
     <button
         class="home-button"
         onclick="openIntroduction()"
@@ -584,6 +978,7 @@ body{
         INTRODUCTION TO C++
 
     </button>
+
 
 </section>
 
@@ -598,11 +993,14 @@ body{
     class="page"
 >
 
+
     <div class="introduction-container">
+
 
         <h1>
             Introduction to C++
         </h1>
+
 
         <p>
             C++ is a powerful general-purpose programming
@@ -611,9 +1009,11 @@ body{
             applications.
         </p>
 
+
         <h2>
             What is C++?
         </h2>
+
 
         <p>
             C++ is a programming language that provides
@@ -621,9 +1021,11 @@ body{
             low-level control over computer resources.
         </p>
 
+
         <h2>
             C++ and Microcontrollers
         </h2>
+
 
         <p>
             C++-based programming is widely used with
@@ -632,9 +1034,11 @@ body{
             platforms.
         </p>
 
+
         <h2>
             What You Can Learn
         </h2>
+
 
         <ul>
 
@@ -675,6 +1079,7 @@ body{
 
         <div class="enter-area">
 
+
             <button
                 class="enter-button"
                 onclick="openDevices()"
@@ -684,9 +1089,12 @@ body{
 
             </button>
 
+
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -701,6 +1109,7 @@ body{
     class="page"
 >
 
+
     <div class="device-header">
 
         <h1>
@@ -712,6 +1121,7 @@ body{
         </p>
 
     </div>
+
 
 
     <div class="device-grid">
@@ -833,6 +1243,7 @@ body{
     </div>
 
 
+
     <div class="devices-back">
 
         <button
@@ -846,6 +1257,7 @@ body{
 
     </div>
 
+
 </section>
 
 
@@ -858,6 +1270,7 @@ body{
     id="lessons"
     class="page"
 >
+
 
     <div class="lesson-container">
 
@@ -898,8 +1311,55 @@ body{
 
     </div>
 
+
 </section>
 
+
+
+<!-- =========================================================
+     PROGRAM DETAIL PAGE
+========================================================= -->
+
+<section
+    id="lesson-detail"
+    class="page"
+>
+
+    <div class="detail-container">
+
+        <div class="detail-header">
+            <h1 id="detail-title">PROGRAM</h1>
+            <p id="detail-description">C++ program details</p>
+        </div>
+
+        <div class="detail-content">
+
+            <!-- CONNECTION GUIDE -->
+            <div class="content-box">
+                <div class="content-box-header">
+                    <h4>CONNECTION GUIDE</h4>
+                </div>
+                <pre id="detail-guide" class="guide-display">Connection guide is not available.</pre>
+            </div>
+
+            <!-- C++ CODE -->
+            <div class="content-box">
+                <div class="content-box-header">
+                    <h4 id="detail-code-title">program.cpp</h4>
+                    <button id="copy-code-button" class="copy-button" onclick="copyCurrentCode()">COPY</button>
+                </div>
+                <pre id="detail-code" class="code-display">C++ code is not available.</pre>
+            </div>
+
+        </div>
+
+        <div class="detail-bottom">
+            <button class="back-button" onclick="openLessons()">BACK TO PROGRAMS</button>
+        </div>
+
+    </div>
+
+</section>
 
 
 <!-- =========================================================
@@ -908,15 +1368,20 @@ body{
 
 <div id="loading">
 
+
     <div class="loading-box">
 
+
         <div class="loader"></div>
+
 
         <p id="loading-text">
             Loading...
         </p>
 
+
     </div>
+
 
 </div>
 
@@ -934,6 +1399,14 @@ body{
 
 /* =========================================================
    DEVICE CONFIGURATION
+=========================================================
+
+   Each device has its own folder.
+
+   Example:
+
+   devices/d1-mini/codes.json
+
 ========================================================= */
 
 const DEVICE_CONFIG = {
@@ -1012,6 +1485,7 @@ const DEVICE_CONFIG = {
 ========================================================= */
 
 let currentDevice = null;
+let currentLesson = null;
 
 
 
@@ -1024,6 +1498,7 @@ function showPage(id){
     const pages =
         document.querySelectorAll(".page");
 
+
     pages.forEach(function(page){
 
         page.classList.remove("active");
@@ -1034,11 +1509,13 @@ function showPage(id){
     const selected =
         document.getElementById(id);
 
+
     if(selected){
 
         selected.classList.add("active");
 
     }
+
 
     window.scrollTo(0,0);
 
@@ -1079,6 +1556,7 @@ async function selectDevice(deviceId){
     const device =
         DEVICE_CONFIG[deviceId];
 
+
     if(!device){
 
         showMessage(
@@ -1092,6 +1570,10 @@ async function selectDevice(deviceId){
 
     currentDevice = deviceId;
 
+
+    /*
+        Show loading while reading JSON.
+    */
 
     showLoading(
         "Loading device content..."
@@ -1128,20 +1610,27 @@ async function selectDevice(deviceId){
 
         hideLoading();
 
+
         showPage("lessons");
 
 
     }
-
     catch(error){
 
         hideLoading();
 
+
         console.error(error);
+
 
         showMessage(
             "Unable to load device content."
         );
+
+
+        /*
+            Helpful console message.
+        */
 
         console.log(
             "Expected JSON file:",
@@ -1155,462 +1644,199 @@ async function selectDevice(deviceId){
 
 
 /* =========================================================
-   DISPLAY LESSONS
+   DISPLAY PROGRAMS
 ========================================================= */
 
 function displayLessons(device, data){
 
     const title =
-        document.getElementById(
-            "selected-device-name"
-        );
-
+        document.getElementById("selected-device-name");
 
     const description =
-        document.getElementById(
-            "selected-device-description"
-        );
-
+        document.getElementById("selected-device-description");
 
     const lessonList =
-        document.getElementById(
-            "lesson-list"
-        );
-
+        document.getElementById("lesson-list");
 
     title.textContent =
         data.device ||
         device.name;
 
-
     description.textContent =
         data.description ||
         "Available C++ programs";
 
-
     lessonList.innerHTML = "";
-
 
     if(
         !Array.isArray(data.lessons) ||
         data.lessons.length === 0
     ){
-
         lessonList.innerHTML = `
-
-            <div
-                class="lesson-item"
-            >
-
+            <div class="lesson-item">
                 <div class="lesson-information">
-
-                    <h3>
-                        No C++ programs available
-                    </h3>
-
-                    <p>
-                        Add lessons to this device's
-                        codes.json file.
-                    </p>
-
+                    <h3>No C++ programs available</h3>
+                    <p>Add lessons to this device's codes.json file.</p>
                 </div>
-
             </div>
-
         `;
-
         return;
-
     }
 
+    data.lessons.forEach(function(lesson){
 
-    data.lessons.forEach(
-        function(lesson,index){
+        const item = document.createElement("div");
+        item.className = "lesson-item";
 
-            const item =
-                document.createElement(
-                    "div"
-                );
+        const information = document.createElement("div");
+        information.className = "lesson-information";
 
+        const heading = document.createElement("h3");
+        heading.textContent = lesson.name || "Untitled C++ Program";
 
-            item.className =
-                "lesson-item";
+        const paragraph = document.createElement("p");
+        paragraph.textContent =
+            lesson.description ||
+            "C++ source code and connection guide";
 
+        information.appendChild(heading);
+        information.appendChild(paragraph);
 
-            /* =================================================
-               LESSON INFORMATION
-            ================================================= */
+        const actions = document.createElement("div");
+        actions.className = "lesson-actions";
 
-            const information =
-                document.createElement(
-                    "div"
-                );
+        const button = document.createElement("button");
+        button.className = "download-button";
+        button.textContent = "OPEN PROGRAM";
 
+        button.addEventListener("click", function(){
+            openLessonDetail(lesson);
+        });
 
-            information.className =
-                "lesson-information";
-
-
-            const heading =
-                document.createElement(
-                    "h3"
-                );
-
-
-            heading.textContent =
-                lesson.name ||
-                "Untitled C++ Program";
-
-
-            const paragraph =
-                document.createElement(
-                    "p"
-                );
-
-
-            paragraph.textContent =
-                lesson.description ||
-                "C++ source code and connection guide";
-
-
-            information.appendChild(
-                heading
-            );
-
-
-            information.appendChild(
-                paragraph
-            );
-
-
-            item.appendChild(
-                information
-            );
-
-
-            /* =================================================
-               CONTENT AREA
-            ================================================= */
-
-            const content =
-                document.createElement(
-                    "div"
-                );
-
-
-            content.className =
-                "lesson-content";
-
-
-            /* =================================================
-               CONNECTION GUIDE BOX
-            ================================================= */
-
-            const guideBox =
-                document.createElement(
-                    "div"
-                );
-
-
-            guideBox.className =
-                "content-box";
-
-
-            const guideHeader =
-                document.createElement(
-                    "div"
-                );
-
-
-            guideHeader.className =
-                "content-box-header";
-
-
-            const guideTitle =
-                document.createElement(
-                    "h4"
-                );
-
-
-            guideTitle.textContent =
-                "CONNECTION GUIDE";
-
-
-            guideHeader.appendChild(
-                guideTitle
-            );
-
-
-            const guideDisplay =
-                document.createElement(
-                    "pre"
-                );
-
-
-            guideDisplay.className =
-                "guide-display";
-
-
-            guideDisplay.textContent =
-                typeof lesson.connectionGuide === "string"
-                    ? lesson.connectionGuide
-                    : "Connection guide is not available.";
-
-
-            guideBox.appendChild(
-                guideHeader
-            );
-
-
-            guideBox.appendChild(
-                guideDisplay
-            );
-
-
-            /* =================================================
-               C++ CODE BOX
-            ================================================= */
-
-            const codeBox =
-                document.createElement(
-                    "div"
-                );
-
-
-            codeBox.className =
-                "content-box";
-
-
-            const codeHeader =
-                document.createElement(
-                    "div"
-                );
-
-
-            codeHeader.className =
-                "content-box-header";
-
-
-            const codeTitle =
-                document.createElement(
-                    "h4"
-                );
-
-
-            codeTitle.textContent =
-                lesson.cppFile ||
-                "program.cpp";
-
-
-            /* =================================================
-               COPY BUTTON
-            ================================================= */
-
-            const copyButton =
-                document.createElement(
-                    "button"
-                );
-
-
-            copyButton.className =
-                "copy-button";
-
-
-            copyButton.textContent =
-                "COPY";
-
-
-            copyButton.addEventListener(
-                "click",
-                async function(){
-
-                    const code =
-                        typeof lesson.code === "string"
-                            ? lesson.code
-                            : "";
-
-
-                    if(!code){
-
-                        showMessage(
-                            "C++ code is missing."
-                        );
-
-                        return;
-
-                    }
-
-
-                    try{
-
-                        await navigator.clipboard.writeText(
-                            code
-                        );
-
-
-                        copyButton.textContent =
-                            "COPIED!";
-
-
-                        showMessage(
-                            "C++ code copied to clipboard."
-                        );
-
-
-                        setTimeout(
-                            function(){
-
-                                copyButton.textContent =
-                                    "COPY";
-
-                            },
-                            1500
-                        );
-
-                    }
-
-                    catch(error){
-
-                        /*
-                            Fallback for browsers
-                            that block clipboard API.
-                        */
-
-                        const area =
-                            document.createElement(
-                                "textarea"
-                            );
-
-
-                        area.value =
-                            code;
-
-
-                        area.style.position =
-                            "fixed";
-
-
-                        area.style.opacity =
-                            "0";
-
-
-                        document.body.appendChild(
-                            area
-                        );
-
-
-                        area.select();
-
-
-                        try{
-
-                            document.execCommand(
-                                "copy"
-                            );
-
-
-                            copyButton.textContent =
-                                "COPIED!";
-
-
-                            showMessage(
-                                "C++ code copied to clipboard."
-                            );
-
-
-                            setTimeout(
-                                function(){
-
-                                    copyButton.textContent =
-                                        "COPY";
-
-                                },
-                                1500
-                            );
-
-                        }
-
-                        catch(copyError){
-
-                            showMessage(
-                                "Unable to copy the C++ code."
-                            );
-
-                        }
-
-
-                        area.remove();
-
-                    }
-
-                }
-            );
-
-
-            codeHeader.appendChild(
-                codeTitle
-            );
-
-
-            codeHeader.appendChild(
-                copyButton
-            );
-
-
-            const codeDisplay =
-                document.createElement(
-                    "pre"
-                );
-
-
-            codeDisplay.className =
-                "code-display";
-
-
-            codeDisplay.textContent =
-                typeof lesson.code === "string"
-                    ? lesson.code
-                    : "C++ code is not available.";
-
-
-            codeBox.appendChild(
-                codeHeader
-            );
-
-
-            codeBox.appendChild(
-                codeDisplay
-            );
-
-
-            /* =================================================
-               ADD BOTH BOXES
-            ================================================= */
-
-            content.appendChild(
-                guideBox
-            );
-
-
-            content.appendChild(
-                codeBox
-            );
-
-
-            item.appendChild(
-                content
-            );
-
-
-            lessonList.appendChild(
-                item
-            );
-
-        }
-    );
-
+        actions.appendChild(button);
+        item.appendChild(information);
+        item.appendChild(actions);
+        lessonList.appendChild(item);
+    });
 }
 
+
+/* =========================================================
+   OPEN PROGRAM DETAIL
+========================================================= */
+
+function openLessonDetail(lesson){
+
+    currentLesson = lesson;
+
+    const title = document.getElementById("detail-title");
+    const description = document.getElementById("detail-description");
+    const guide = document.getElementById("detail-guide");
+    const code = document.getElementById("detail-code");
+    const codeTitle = document.getElementById("detail-code-title");
+    const copyButton = document.getElementById("copy-code-button");
+
+    title.textContent =
+        lesson.name ||
+        "Untitled C++ Program";
+
+    description.textContent =
+        lesson.description ||
+        "C++ source code and connection guide";
+
+    guide.textContent =
+        typeof lesson.connectionGuide === "string"
+            ? lesson.connectionGuide
+            : "Connection guide is not available.";
+
+    code.textContent =
+        typeof lesson.code === "string"
+            ? lesson.code
+            : "C++ code is not available.";
+
+    codeTitle.textContent =
+        lesson.cppFile ||
+        "program.cpp";
+
+    copyButton.textContent = "COPY";
+
+    showPage("lesson-detail");
+}
+
+
+/* =========================================================
+   OPEN PROGRAM LIST
+========================================================= */
+
+function openLessons(){
+    showPage("lessons");
+}
+
+
+/* =========================================================
+   COPY CURRENT C++ CODE
+========================================================= */
+
+async function copyCurrentCode(){
+
+    if(
+        !currentLesson ||
+        typeof currentLesson.code !== "string" ||
+        !currentLesson.code
+    ){
+        showMessage("C++ code is missing.");
+        return;
+    }
+
+    const code = currentLesson.code;
+    const button = document.getElementById("copy-code-button");
+
+    try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+            await navigator.clipboard.writeText(code);
+        }else{
+            throw new Error("Clipboard API unavailable");
+        }
+
+        button.textContent = "COPIED!";
+        showMessage("C++ code copied to clipboard.");
+
+        setTimeout(function(){
+            button.textContent = "COPY";
+        },1500);
+    }
+    catch(error){
+
+        const area = document.createElement("textarea");
+        area.value = code;
+        area.style.position = "fixed";
+        area.style.left = "-9999px";
+        area.style.top = "0";
+        document.body.appendChild(area);
+        area.focus();
+        area.select();
+
+        try{
+            const copied = document.execCommand("copy");
+
+            if(!copied){
+                throw new Error("Copy command failed");
+            }
+
+            button.textContent = "COPIED!";
+            showMessage("C++ code copied to clipboard.");
+
+            setTimeout(function(){
+                button.textContent = "COPY";
+            },1500);
+        }
+        catch(copyError){
+            showMessage("Unable to copy the C++ code.");
+        }
+
+        area.remove();
+    }
+}
 
 
 /* =========================================================
