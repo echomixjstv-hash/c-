@@ -3,6 +3,15 @@
   "type": "ESP8266",
   "description": "C++ programs for the D1 Mini ESP8266.",
   "lessons": [
+    [
+  {
+    "name": "Automatic Pet Feeder",
+    "description": "Dispense pet food using a servo motor with a push button trigger. The servo opens the food dispenser, waits for a few seconds, then automatically closes it.",
+    "cppFile": "automatic_pet_feeder.cpp",
+    "code": "#include <Servo.h>\n\nServo feederServo;\n\nconst int servoPin = 9;\nconst int buttonPin = 2;\n\nbool lastButtonState = HIGH;\n\nvoid setup() {\n  feederServo.attach(servoPin);\n  feederServo.write(0);\n\n  pinMode(buttonPin, INPUT_PULLUP);\n\n  Serial.begin(9600);\n  Serial.println(\"Automatic Pet Feeder Ready\");\n}\n\nvoid loop() {\n  bool buttonState = digitalRead(buttonPin);\n\n  // Detect button press\n  if (lastButtonState == HIGH && buttonState == LOW) {\n    Serial.println(\"Dispensing food...\");\n\n    // Open the food dispenser\n    feederServo.write(90);\n    delay(2000);\n\n    // Close the food dispenser\n    feederServo.write(0);\n\n    Serial.println(\"Feeding complete.\");\n\n    // Small delay to prevent accidental repeated feeding\n    delay(500);\n  }\n\n  lastButtonState = buttonState;\n}",
+    "connectionGuide": "AUTOMATIC PET FEEDER\n====================\n\nCOMPONENTS:\n- Arduino Uno\n- Servo Motor\n- Push Button\n- Jumper Wires\n\nCONNECTION:\n\nSERVO MOTOR\nSignal (Orange/Yellow) -> Arduino D9\nVCC (Red)              -> Arduino 5V\nGND (Brown/Black)      -> Arduino GND\n\nPUSH BUTTON\nOne leg                -> Arduino D2\nOther leg              -> Arduino GND\n\nHOW IT WORKS:\n1. The feeder starts with the servo at 0 degrees.\n2. Press the push button.\n3. The servo rotates to 90 degrees and opens the food dispenser.\n4. It stays open for 2 seconds.\n5. The servo returns to 0 degrees and closes the dispenser.\n\nIMPORTANT:\nFor larger or high-torque servo motors, use a separate suitable 5V power supply.\nConnect the external power supply GND to the Arduino GND."
+  }
+]
     {
       "name": "Jackpot Running Light",
       "description": "Run four LEDs in sequence with 13 progressive speed stages for 30 seconds, then blink the final LED as the jackpot.",
