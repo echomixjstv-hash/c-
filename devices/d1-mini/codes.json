@@ -4,7 +4,15 @@
   "description": "C++ programs for the D1 Mini ESP8266.",
   "lessons": [
     {
-      "name": "01 Blink LED",
+      "name": "01 Jackpot Running Light",
+      "description": "Run four LEDs in sequence with 13 progressive speed stages for 30 seconds, then blink the final LED as the jackpot.",
+      "cppFile": "D1-Mini-Jackpot-Running-Light.cpp",
+      "zipFile": "D1-Mini-Jackpot-Running-Light.zip",
+      "code": "#define RED_LED    D5\n#define YELLOW_LED D6\n#define GREEN_LED  D7\n#define BLUE_LED   D3\n\nconst int leds[] = {\n  RED_LED,\n  YELLOW_LED,\n  GREEN_LED,\n  BLUE_LED\n};\n\nconst int LED_COUNT = 4;\n\n// ==========================================\n// 13 RUNNING SPEED STAGES\n// ==========================================\n\nconst unsigned long SPEED_1  = 10;     // 0-3 sec\nconst unsigned long SPEED_2  = 20;     // 3-6 sec\nconst unsigned long SPEED_3  = 40;     // 6-9 sec\nconst unsigned long SPEED_4  = 50;     // 9-12 sec\nconst unsigned long SPEED_5  = 80;     // 12-15 sec\nconst unsigned long SPEED_6  = 100;    // 15-18 sec\nconst unsigned long SPEED_7  = 200;    // 18-21 sec\nconst unsigned long SPEED_8  = 300;    // 21-23 sec\nconst unsigned long SPEED_9  = 500;    // 23-25 sec\nconst unsigned long SPEED_10 = 700;    // 25-27 sec\nconst unsigned long SPEED_11 = 900;    // 27-28 sec\nconst unsigned long SPEED_12 = 1200;   // 28-29 sec\nconst unsigned long SPEED_13 = 1500;   // 29-30 sec\n\n// ==========================================\n// JACKPOT BLINK\n// 5 BLINKS = 5 SECONDS\n// ==========================================\n\nconst int BLINK_COUNT = 5;\nconst unsigned long BLINK_DELAY = 500;\n\n// ==========================================\n// SETUP\n// ==========================================\n\nvoid setup() {\n  pinMode(RED_LED, OUTPUT);\n  pinMode(YELLOW_LED, OUTPUT);\n  pinMode(GREEN_LED, OUTPUT);\n  pinMode(BLUE_LED, OUTPUT);\n\n  allOff();\n\n  randomSeed(analogRead(A0));\n}\n\n// ==========================================\n// MAIN LOOP\n// ==========================================\n\nvoid loop() {\n\n  // Random starting LED\n  int currentLED = random(0, LED_COUNT);\n\n  unsigned long runStart = millis();\n\n  // ========================================\n  // 30 SECOND RUNNING LIGHT\n  // ========================================\n\n  while (millis() - runStart < 30000UL) {\n\n    unsigned long elapsed = millis() - runStart;\n    unsigned long speedDelay;\n\n    if (elapsed < 3000UL) {\n      speedDelay = SPEED_1;\n    } else if (elapsed < 6000UL) {\n      speedDelay = SPEED_2;\n    } else if (elapsed < 9000UL) {\n      speedDelay = SPEED_3;\n    } else if (elapsed < 12000UL) {\n      speedDelay = SPEED_4;\n    } else if (elapsed < 15000UL) {\n      speedDelay = SPEED_5;\n    } else if (elapsed < 18000UL) {\n      speedDelay = SPEED_6;\n    } else if (elapsed < 21000UL) {\n      speedDelay = SPEED_7;\n    } else if (elapsed < 23000UL) {\n      speedDelay = SPEED_8;\n    } else if (elapsed < 25000UL) {\n      speedDelay = SPEED_9;\n    } else if (elapsed < 27000UL) {\n      speedDelay = SPEED_10;\n    } else if (elapsed < 28000UL) {\n      speedDelay = SPEED_11;\n    } else if (elapsed < 29000UL) {\n      speedDelay = SPEED_12;\n    } else {\n      speedDelay = SPEED_13;\n    }\n\n    allOff();\n\n    digitalWrite(leds[currentLED], HIGH);\n\n    delay(speedDelay);\n\n    currentLED++;\n\n    if (currentLED >= LED_COUNT) {\n      currentLED = 0;\n    }\n  }\n\n  // ========================================\n  // JACKPOT\n  // ========================================\n\n  int jackpotLED = currentLED;\n\n  allOff();\n\n  // ========================================\n  // BLINK JACKPOT 5 TIMES\n  // ========================================\n\n  for (int i = 0; i < BLINK_COUNT; i++) {\n\n    digitalWrite(leds[jackpotLED], HIGH);\n    delay(BLINK_DELAY);\n\n    digitalWrite(leds[jackpotLED], LOW);\n    delay(BLINK_DELAY);\n  }\n\n  // ========================================\n  // RESET\n  // ========================================\n\n  allOff();\n\n  delay(200);\n}\n\n// ==========================================\n// TURN OFF ALL LEDs\n// ==========================================\n\nvoid allOff() {\n  digitalWrite(RED_LED, LOW);\n  digitalWrite(YELLOW_LED, LOW);\n  digitalWrite(GREEN_LED, LOW);\n  digitalWrite(BLUE_LED, LOW);\n}",
+      "connectionGuide": "JACKPOT RUNNING LIGHT CONNECTION:\n\nRED LED:\nAnode (+) -> 220 ohm resistor -> D5 / GPIO 14\nCathode (-) -> GND\n\nYELLOW LED:\nAnode (+) -> 220 ohm resistor -> D6 / GPIO 12\nCathode (-) -> GND\n\nGREEN LED:\nAnode (+) -> 220 ohm resistor -> D7 / GPIO 13\nCathode (-) -> GND\n\nBLUE LED:\nAnode (+) -> 220 ohm resistor -> D3 / GPIO 0\nCathode (-) -> GND\n\nOPERATION:\nThe four LEDs run in sequence for 30 seconds.\nThe starting LED is selected randomly.\n\n13 SPEED STAGES:\n0-3 sec   = 10 ms\n3-6 sec   = 20 ms\n6-9 sec   = 40 ms\n9-12 sec  = 50 ms\n12-15 sec = 80 ms\n15-18 sec = 100 ms\n18-21 sec = 200 ms\n21-23 sec = 300 ms\n23-25 sec = 500 ms\n25-27 sec = 700 ms\n27-28 sec = 900 ms\n28-29 sec = 1200 ms\n29-30 sec = 1500 ms\n\nAfter the 30-second running sequence, the final LED is used as the jackpot LED.\nThe jackpot LED blinks 5 times for a total of approximately 5 seconds.\n\nIMPORTANT:\nUse a 220 ohm resistor for each LED.\nDo not connect an LED directly to a GPIO pin without a current-limiting resistor."
+    },
+    {
+      "name": "02 Blink LED",
       "description": "Blink an LED using digital output.",
       "cppFile": "D1-Mini-Blink.cpp",
       "zipFile": "D1-Mini-Blink.zip",
@@ -12,7 +20,7 @@
       "connectionGuide": "LED:\nAnode (+) -> 220 ohm resistor -> D5 / GPIO 14\nCathode (-) -> GND\n\nThe LED will blink every second."
     },
     {
-      "name": "02 Button Input",
+      "name": "03 Button Input",
       "description": "Read a push button and control an LED.",
       "cppFile": "D1-Mini-Button.cpp",
       "zipFile": "D1-Mini-Button.zip",
@@ -20,7 +28,7 @@
       "connectionGuide": "Push Button:\nOne leg -> D3 / GPIO 0\nOther leg -> GND\n\nLED:\nAnode (+) -> 220 ohm resistor -> D5 / GPIO 14\nCathode (-) -> GND\n\nThe internal pull-up resistor is used."
     },
     {
-      "name": "03 Buzzer",
+      "name": "04 Buzzer",
       "description": "Generate a tone using a buzzer.",
       "cppFile": "D1-Mini-Buzzer.cpp",
       "zipFile": "D1-Mini-Buzzer.zip",
@@ -28,7 +36,7 @@
       "connectionGuide": "Buzzer:\nPositive (+) -> D6 / GPIO 12\nNegative (-) -> GND\n\nThe buzzer produces a 1000 Hz tone for 500 milliseconds."
     },
     {
-      "name": "04 Traffic Light",
+      "name": "05 Traffic Light",
       "description": "Control red, yellow, and green LEDs as a traffic light.",
       "cppFile": "D1-Mini-Traffic-Light.cpp",
       "zipFile": "D1-Mini-Traffic-Light.zip",
@@ -36,7 +44,7 @@
       "connectionGuide": "Red LED:\nAnode (+) -> 220 ohm resistor -> D5 / GPIO 14\nCathode (-) -> GND\n\nYellow LED:\nAnode (+) -> 220 ohm resistor -> D6 / GPIO 12\nCathode (-) -> GND\n\nGreen LED:\nAnode (+) -> 220 ohm resistor -> D7 / GPIO 13\nCathode (-) -> GND."
     },
     {
-      "name": "05 Serial Monitor",
+      "name": "06 Serial Monitor",
       "description": "Display messages and analog readings in Serial Monitor.",
       "cppFile": "D1-Mini-Serial-Monitor.cpp",
       "zipFile": "D1-Mini-Serial-Monitor.zip",
@@ -44,7 +52,7 @@
       "connectionGuide": "No external components are required.\n\nConnect the D1 Mini to the computer using USB.\n\nOpen Arduino IDE -> Tools -> Serial Monitor.\nSet the baud rate to 115200."
     },
     {
-      "name": "06 Analog Input",
+      "name": "07 Analog Input",
       "description": "Read an analog value from a potentiometer.",
       "cppFile": "D1-Mini-Analog-Input.cpp",
       "zipFile": "D1-Mini-Analog-Input.zip",
@@ -52,7 +60,7 @@
       "connectionGuide": "Potentiometer:\nMiddle pin -> A0\n\nConnect the other two pins according to the voltage range supported by your D1 Mini board.\n\nIMPORTANT: Check the A0 input voltage limit of your specific D1 Mini board before applying external voltage."
     },
     {
-      "name": "07 WiFi Connection",
+      "name": "08 WiFi Connection",
       "description": "Connect the D1 Mini to a WiFi network.",
       "cppFile": "D1-Mini-WiFi-Connection.cpp",
       "zipFile": "D1-Mini-WiFi-Connection.zip",
@@ -60,7 +68,7 @@
       "connectionGuide": "No external components are required.\n\nBefore uploading, replace:\nYOUR_WIFI_NAME\nYOUR_WIFI_PASSWORD\n\nwith your WiFi network name and password.\n\nOpen Serial Monitor at 115200 baud to see the assigned IP address."
     },
     {
-      "name": "08 WiFi Web Server",
+      "name": "09 WiFi Web Server",
       "description": "Create a simple web server that controls an LED.",
       "cppFile": "D1-Mini-WiFi-Web-Server.cpp",
       "zipFile": "D1-Mini-WiFi-Web-Server.zip",
@@ -68,7 +76,7 @@
       "connectionGuide": "No external components are required if using the D1 Mini built-in LED on D5 in this example.\n\nReplace the WiFi name and password in the code.\n\nAfter uploading, open Serial Monitor at 115200 baud.\n\nCopy the displayed IP address into a web browser connected to the same WiFi network."
     },
     {
-      "name": "09 Button Counter",
+      "name": "10 Button Counter",
       "description": "Count button presses and display the count in Serial Monitor.",
       "cppFile": "D1-Mini-Button-Counter.cpp",
       "zipFile": "D1-Mini-Button-Counter.zip",
@@ -76,7 +84,7 @@
       "connectionGuide": "Push Button:\nOne leg -> D3 / GPIO 0\nOther leg -> GND\n\nThe internal pull-up resistor is used.\n\nOpen Serial Monitor at 115200 baud to view the counter."
     },
     {
-      "name": "10 Button LED Toggle",
+      "name": "11 Button LED Toggle",
       "description": "Toggle an LED ON and OFF each time the button is pressed.",
       "cppFile": "D1-Mini-Button-LED-Toggle.cpp",
       "zipFile": "D1-Mini-Button-LED-Toggle.zip",
